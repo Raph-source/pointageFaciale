@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `agent` ADD COLUMN `Status` BOOLEAN NOT NULL DEFAULT true;
