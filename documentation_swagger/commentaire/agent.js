@@ -3,7 +3,7 @@
  * /authentification:
  *   post:
  *     summary: Authentifier les agents
- *     tags: [Agent]
+ *     tags: [RH]
  *     requestBody:
  *       required: true
  *       content:
@@ -101,10 +101,10 @@
  * /departement-titre:
  *   get:
  *     summary: Récuperer tout le département et titres
- *     tags: [Agent]
+ *     tags: [RH]
  *     responses:
  *       200:
- *         description: la liste de tout les promotions
+ *         description: la liste de tout département et titres
  *         content:
  *           application/json:
  *             schema:
@@ -154,7 +154,7 @@
  * /ajouter-agent:
  *   post:
  *     summary: Upload d'un agent avec sa photo
- *     tags: [Agent]
+ *     tags: [RH]
  *     consumes:
  *       - multipart/form-data
  *     parameters:
@@ -234,31 +234,31 @@
  *                   example: erreur serveur
  */
 
+//==============================================================================================================================================
+
 /**
- *
- * /user/get-liste-cours:
- *   post:
- *     summary: Récuperer tout le cours d'une promotion
- *     tags: [Responsable tutorat et Décanat]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               idPromotion:
- *                 type: integer
- *                 example: 4
+ * @swagger
+ * /agent-departement/{idDepartement}:
+ *   get:
+ *     summary: Récuperer tout les agents d'un département
+ *     tags: [RH]
+ *     parameters:
+ *       - in: path
+ *         name: idDepartement
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           example: 1
+ *         description: L'ID du département pour lequel les agents seront retourné
  *     responses:
  *       200:
- *         description: la liste de tout les cours d'une promotion
+ *         description: la liste de tout les agents du département et titres
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
- *                 reponse:
+ *                 departement:
  *                   type: array
  *                   items:
  *                     type: object
@@ -266,12 +266,198 @@
  *                       id:
  *                         type: integer
  *                         example: 1
- *                       intitule:
+ *                       Nom:
  *                         type: string
- *                         example: algorithmique
- *                       idPromotion:
- *                         type: integer
- *                         example: 4
+ *                         example: kipata
+ *                       PostNom:
+ *                         type: string
+ *                         example: mulubwe
+ *                       Prenom:
+ *                         type: string
+ *                         example: Elie
+ *                       Matricule:
+ *                         type: string
+ *                         example: 2024KME34
+ *       400:
+ *         description: Requête invalide (données manquantes)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 reponse:
+ *                   type: string
+ *                   example: vide
+ *       403:
+ *         description: Accès non autorisé (si les champs sont manquant)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 reponse:
+ *                   type: string
+ *                   example: interdit
+ *       500:
+ *         description: Erreur interne du serveur
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 reponse:
+ *                   type: string
+ *                   example: erreur serveur
+ */
+
+//==============================================================================================================================================
+
+/**
+ * @swagger
+ * /shift-jour/{idAgent}:
+ *   put:
+ *     summary: Ajout un agent au groupe de nuit
+ *     tags: [RH]
+ *     parameters:
+ *       - in: path
+ *         name: idAgent
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           example: 1
+ *         description: L'ID de l'agent
+ *     responses:
+ *       200:
+ *         description: si l'agent est ajouté
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 reponse:
+ *                   type: string
+ *                   example: SUCCESS
+ *       400:
+ *         description: Requête invalide (données manquantes)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 reponse:
+ *                   type: string
+ *                   example: vide
+ *       403:
+ *         description: Accès non autorisé (si les champs sont manquant)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 reponse:
+ *                   type: string
+ *                   example: interdit
+ *       500:
+ *         description: Erreur interne du serveur
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 reponse:
+ *                   type: string
+ *                   example: erreur serveur
+ */
+
+//==============================================================================================================================================
+
+/**
+ * @swagger
+ * /shift-nuit/{idAgent}:
+ *   put:
+ *     summary: Ajout un agent au groupe de nuit
+ *     tags: [RH]
+ *     parameters:
+ *       - in: path
+ *         name: idAgent
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           example: 1
+ *         description: L'ID de l'agent
+ *     responses:
+ *       200:
+ *         description: si l'agent est ajouté
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 reponse:
+ *                   type: string
+ *                   example: SUCCESS
+ *       400:
+ *         description: Requête invalide (données manquantes)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 reponse:
+ *                   type: string
+ *                   example: vide
+ *       403:
+ *         description: Accès non autorisé (si les champs sont manquant)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 reponse:
+ *                   type: string
+ *                   example: interdit
+ *       500:
+ *         description: Erreur interne du serveur
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 reponse:
+ *                   type: string
+ *                   example: erreur serveur
+ */
+
+//==============================================================================================================================================
+
+/**
+ * @swagger
+ * /shift-agent/{idAgent}:
+ *   get:
+ *     summary: Retourne le shift de l'agent
+ *     tags: [Agent]
+ *     parameters:
+ *       - in: path
+ *         name: idAgent
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           example: 1
+ *         description: L'ID de l'agent
+ *     responses:
+ *       200:
+ *         description: si les données sont trouvées
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 jour:
+ *                   type: boolean
+ *                   example: true
+ *                 nuit:
+ *                   type: boolean
+ *                   example: false
  *       400:
  *         description: Requête invalide (données manquantes)
  *         content:

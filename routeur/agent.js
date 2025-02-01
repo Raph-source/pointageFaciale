@@ -56,6 +56,9 @@ agent.post('/ajouter-agent', upload.single('photo'), (req, res) => { Agent.ajout
 
 //GET
 agent.get('/departement-titre', (req, res) =>{ Agent.getAllDepartementAndTitre(res)})
-agent.get('/statistique/:idPromotion', (req, res) =>{ User.getStatistique(req, res)})
+agent.get('/agent-departement/:idDepartement', (req, res) =>{ Agent.getAgentDepartement(req, res)})
+agent.put('/shift-jour/:idAgent', (req, res) =>{ Agent.setAgentJour(req, res)})
+agent.put('/shift-nuit/:idAgent', (req, res) =>{ Agent.setAgentNuit(req, res)})
+agent.get('/shift-agent/:idAgent', (req, res) =>{ Agent.checkShift(req, res)})
 
 module.exports = agent;

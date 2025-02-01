@@ -62,6 +62,22 @@ class Agent{
         return false
     }
 
+    static async getAgentDepartemnt(idDepartement){
+        const trouver = await prisma.agent.findMany({
+            where: {
+                idDepartement: idDepartement
+            },
+            select: {
+                id: true,
+                Nom: true,
+                PostNom: true,
+                Prenom: true,
+                Matricule: true,
+            }
+        })
+
+        return trouver
+    }
 }
 
 module.exports = Agent

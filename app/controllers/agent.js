@@ -2,12 +2,13 @@ const Agent_M = require('../models/agent')
 const Titre = require('../models/titre')
 const Departement = require('../models/departement')
 const validator = require("validator")
+const AgentMatin = require('../models/agentMatin')
+const AgentSoiree = require('../models/agentSoiree')
 
 class Agent{
     static async authentification(req, res){
         try{
-            let matricule = req.body.matricule
-            let mdp = req.body.mdp
+            let {matricule, mdp} = req.body
                     
             if(typeof matricule !== 'undefined' && typeof mdp !== 'undefined'){
                 if(matricule && mdp){
@@ -83,8 +84,6 @@ class Agent{
         }
     }
 
-
-
     static async ajouterAgent(req, res){
         try {
             let {nom, postNom, prenom, idDepartement, idTitre, telephone} = req.body
@@ -146,6 +145,163 @@ class Agent{
             })
         }
         
+    }
+
+    static async getAgentDepartement(req, res){
+        try{
+            let {idDepartement} = req.params
+                    
+            if(typeof idDepartement){
+                if(idDepartement){
+                    //bloquer les injections
+                    idDepartement = validator.escape(idDepartement)
+                    //convertir en entier
+                    idDepartement = Number(idDepartement)
+
+                    const agents = await Agent_M.getAgentDepartemnt(idDepartement)
+                                            
+                    res.status(200).json({
+                        agents: agents
+                    })
+                }
+                else{
+                    res.status(400).json({reponse: "vide"})
+                }
+            }
+            else{
+                res.status(403).json({reponse: "interdit"})
+            }
+        }
+        catch(erreur){   
+            console.log(erreur);
+                                                                                  
+            res.status(500).json({
+                reponse: "erreur serveur"
+            })
+        }
+    }
+
+    static async setAgentJour(req, res){
+        try{
+            let {idAgent} = req.params
+                    
+            if(typeof idAgent){
+                if(idAgent){
+                    //bloquer les injections
+                    idAgent = validator.escape(idAgent)
+                    //convertir en entier
+                    idAgent = Number(idAgent)
+
+                    //supprimer l'agent du shift de la nuit
+                    AgentSoiree.deleteAgent(idAgent)
+
+                    //ajouter l'agent au shift de jour
+                    AgentMatin.setAgent(idAgent)
+                                            
+                    res.status(200).json({
+                        reponse: "SUCCESS"
+                    })
+                }
+                else{
+                    res.status(400).json({reponse: "vide"})
+                }
+            }
+            else{
+                res.status(403).json({reponse: "interdit"})
+            }
+        }
+        catch(erreur){   
+            console.log(erreur);
+                                                                                  
+            res.status(500).json({
+                reponse: "erreur serveur"
+            })
+        }
+    }
+
+    static async setAgentNuit(req, res){
+        try{
+            let {idAgent} = req.params
+                    
+            if(typeof idAgent){
+                if(idAgent){
+                    //bloquer les injections
+                    idAgent = validator.escape(idAgent)
+                    //convertir en entier
+                    idAgent = Number(idAgent)
+
+                    //supprimer l'agent du shift de jour
+                    AgentMatin.deleteAgent(idAgent)
+                    
+                    //ajouter l'agent au shift de la nuit
+                    AgentSoiree.setAgent(idAgent)
+                                            
+                    res.status(200).json({
+                        reponse: "SUCCESS"
+                    })
+                }
+                else{
+                    res.status(400).json({reponse: "vide"})
+                }
+            }
+            else{
+                res.status(403).json({reponse: "interdit"})
+            }
+        }
+        catch(erreur){   
+            console.log(erreur);
+                                                                                  
+            res.status(500).json({
+                reponse: "erreur serveur"
+            })
+        }
+    }
+
+    static async checkShift(req, res){
+        try{
+            let {idAgent} = req.params
+                    
+            if(typeof idAgent){
+                if(idAgent){
+                    //bloquer les injections
+                    idAgent = validator.escape(idAgent)
+                    //convertir en entier
+                    idAgent = Number(idAgent)
+
+                    if(await AgentMatin.checkAgent(idAgent)){
+                        res.status(200).json({
+                            jour: true,
+                            nuit: false,
+                        })
+                    }
+                    else if(await AgentSoiree.checkAgent(idAgent)){
+                        res.status(200).json({
+                            jour: false,
+                            nuit: true,
+                        })
+                    }
+                    else{
+                        res.status(200).json({
+                            jour: false,
+                            nuit: false,
+                        })
+                    }
+                }
+                else{
+                    res.status(400).json({reponse: "vide"})
+                }
+            }
+            else{
+                res.status(403).json({reponse: "interdit"})
+            }
+        }
+        catch(erreur){   
+            console.log(erreur);
+                                                                                  
+            res.status(500).json({
+                reponse: "erreur serveur"
+            })
+        }
     }
 
 }
