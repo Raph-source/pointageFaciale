@@ -22,7 +22,7 @@ class AgentSoiree{
 
     //retourne true si l'id de l'agent existe
     static async checkAgent(idAgent){
-        let trouver = await prisma.agentMatin.findMany({
+        let trouver = await prisma.agentSoiree.findMany({
             where: {
                 idAgent: idAgent
             }
