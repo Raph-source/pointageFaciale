@@ -4,6 +4,7 @@ const Departement = require('../models/departement')
 const validator = require("validator")
 const AgentMatin = require('../models/agentMatin')
 const AgentSoiree = require('../models/agentSoiree')
+const Presence = require('../models/presence')
 
 class Agent{
     static async authentification(req, res){
@@ -151,7 +152,7 @@ class Agent{
         try{
             let {idDepartement} = req.params
                     
-            if(typeof idDepartement){
+            if(typeof idDepartement != "undefined"){
                 if(idDepartement){
                     //bloquer les injections
                     idDepartement = validator.escape(idDepartement)
@@ -185,7 +186,7 @@ class Agent{
         try{
             let {idAgent} = req.params
                     
-            if(typeof idAgent){
+            if(typeof idAgent != "undefined"){
                 if(idAgent){
                     //bloquer les injections
                     idAgent = validator.escape(idAgent)
@@ -223,7 +224,7 @@ class Agent{
         try{
             let {idAgent} = req.params
                     
-            if(typeof idAgent){
+            if(typeof idAgent != "undefined"){
                 if(idAgent){
                     //bloquer les injections
                     idAgent = validator.escape(idAgent)
@@ -261,7 +262,7 @@ class Agent{
         try{
             let {idAgent} = req.params
                     
-            if(typeof idAgent){
+            if(typeof idAgent != "undefined"){
                 if(idAgent){
                     //bloquer les injections
                     idAgent = validator.escape(idAgent)
@@ -286,6 +287,87 @@ class Agent{
                             nuit: false,
                         })
                     }
+                }
+                else{
+                    res.status(400).json({reponse: "vide"})
+                }
+            }
+            else{
+                res.status(403).json({reponse: "interdit"})
+            }
+        }
+        catch(erreur){   
+            console.log(erreur);
+                                                                                  
+            res.status(500).json({
+                reponse: "erreur serveur"
+            })
+        }
+    }
+
+    static async getRapportPointageDepartement(req, res){
+        try{
+            let {idDepartement, mois} = req.params
+                    
+            if(typeof idDepartement != "undefined" && typeof mois != "undefined"){
+                if(idDepartement){
+                    //bloquer les injections
+                    idDepartement = validator.escape(idDepartement)
+                    //convertir en entier
+                    idDepartement = Number(idDepartement)
+                    mois = Number(mois)
+
+                    //l'année
+                    const date = new Date()
+                    const anneeActuelle = date.getFullYear();
+
+                    if(await Departement.checkDepartement(idDepartement)){
+                        const rapport = await Presence.getRapportDepartement(idDepartement, mois, anneeActuelle)
+                        res.status(200).json({
+                            rapport: rapport
+                        })
+                    }
+                    else{
+                        res.status(400).json({reponse: "non trouvé"})
+                    }
+                }
+                else{
+                    res.status(400).json({reponse: "vide"})
+                }
+            }
+            else{
+                res.status(403).json({reponse: "interdit"})
+            }
+        }
+        catch(erreur){   
+            console.log(erreur);
+                                                                                  
+            res.status(500).json({
+                reponse: "erreur serveur"
+            })
+        }
+    }
+
+    static async getRapportPointageAgent(req, res){
+        try{
+            let {idAgent, mois} = req.params
+                    
+            if(typeof idAgent != "undefined" && typeof mois != "undefined"){
+                if(idAgent){
+                    //bloquer les injections
+                    idAgent = validator.escape(idAgent)
+                    //convertir en entier
+                    idAgent = Number(idAgent)
+                    mois = Number(mois)
+
+                    //l'année
+                    const date = new Date()
+                    const anneeActuelle = date.getFullYear();
+
+                    const rapport = await Presence.getRapportAgent(idAgent, mois, anneeActuelle)
+                    res.status(200).json({
+                        rapport: rapport
+                    })
                 }
                 else{
                     res.status(400).json({reponse: "vide"})

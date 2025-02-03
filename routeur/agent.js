@@ -60,5 +60,7 @@ agent.get('/agent-departement/:idDepartement', (req, res) =>{ Agent.getAgentDepa
 agent.put('/shift-jour/:idAgent', (req, res) =>{ Agent.setAgentJour(req, res)})
 agent.put('/shift-nuit/:idAgent', (req, res) =>{ Agent.setAgentNuit(req, res)})
 agent.get('/shift-agent/:idAgent', (req, res) =>{ Agent.checkShift(req, res)})
+agent.get('/rapport-pointage-departement/:idDepartement/:mois', (req, res) =>{ Agent.getRapportPointageDepartement(req, res)})
+agent.get('/rapport-pointage-agent/:idAgent/:mois', (req, res) =>{ Agent.getRapportPointageAgent(req, res)})
 
 module.exports = agent;

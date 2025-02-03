@@ -559,3 +559,179 @@
  *                   example: erreur serveur
  */
 
+/**
+ * @swagger
+ * /rapport-pointage/{idDepartement}/{mois}:
+ *   get:
+ *     summary: Récuperer les rapports d'un departement
+ *     tags: [RH]
+ *     parameters:
+ *       - in: path
+ *         name: idDepartement
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           example: 1
+ *       - in: path
+ *         name: mois
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           example: 1
+ *         description: le mois en entier pour lequel récupérer le rapport
+ *     responses:
+ *       200:
+ *         description: la liste de présences et absences
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 rapport:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       agent:
+ *                         type: object
+ *                         properties:
+ *                           Nom:
+ *                             type: integer
+ *                             example: 1
+ *                           PostNom:
+ *                             type: string
+ *                             example: kipata
+ *                           Prenom:
+ *                             type: string
+ *                             example: mulubwe
+ *                           Matricule:
+ *                             type: string
+ *                             example: Elie
+ *                       HeureArrivee:
+ *                         type: string
+ *                         exemple: 08h00
+ *                       HeureSortie:
+ *                         type: string
+ *                         exemple: 16h00   
+ *       400:
+ *         description: Requête invalide (données manquantes; le departement n'existe pas)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 reponse:
+ *                   type: string
+ *                   example: vide
+ *       403:
+ *         description: Accès non autorisé (si les champs sont manquant)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 reponse:
+ *                   type: string
+ *                   example: interdit
+ *       500:
+ *         description: Erreur interne du serveur
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 reponse:
+ *                   type: string
+ *                   example: erreur serveur
+ */
+
+//==============================================================================================================================================
+
+/**
+ * @swagger
+ * /rapport-pointage-agent/{idAgent}/{mois}:
+ *   get:
+ *     summary: Récuperer les rapports d'un agent
+ *     tags: [RH]
+ *     parameters:
+ *       - in: path
+ *         name: idAgent
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           example: 1
+ *         description: L'ID de l'agent pour lequel on veux récupérer les rapports
+ *       - in: path
+ *         name: mois
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           example: 1
+ *         description: le mois en entier pour lequel récupérer le rapport
+ *     responses:
+ *       200:
+ *         description: la liste de présences et absences
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 rapport:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       agent:
+ *                         type: object
+ *                         properties:
+ *                           Nom:
+ *                             type: integer
+ *                             example: 1
+ *                           PostNom:
+ *                             type: string
+ *                             example: kipata
+ *                           Prenom:
+ *                             type: string
+ *                             example: mulubwe
+ *                           Matricule:
+ *                             type: string
+ *                             example: Elie
+ *                       HeureArrivee:
+ *                         type: string
+ *                         exemple: 08h00
+ *                       HeureSortie:
+ *                         type: string
+ *                         exemple: 16h00   
+ *       400:
+ *         description: Requête invalide (données manquantes)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 reponse:
+ *                   type: string
+ *                   example: vide
+ *       403:
+ *         description: Accès non autorisé (si les champs sont manquant)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 reponse:
+ *                   type: string
+ *                   example: interdit
+ *       500:
+ *         description: Erreur interne du serveur
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 reponse:
+ *                   type: string
+ *                   example: erreur serveur
+ */
+
+//==============================================================================================================================================
