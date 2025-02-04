@@ -492,72 +492,6 @@
 
 //==============================================================================================================================================
 
-/**
- * /user/statistique/{idPromotion}:
- *   get:
- *     summary: Récuperer le statistique pour une promotion
- *     tags: [Responsable tutorat et Décanat]
- *     parameters:
- *       - in: path
- *         name: idPromotion
- *         required: true
- *         schema:
- *           type: integer
- *           example: 1
- *         description: l'ID de la promotion pour laquelle on récupère les stastiques
- *     responses:
- *       200:
- *         description: les données statistiques
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 reponse:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       id:
- *                         type: integer
- *                         example: 1
- *                       intitule:
- *                         type: string
- *                         example: algorithmique
- *                       nombreDemande:
- *                         type: integer
- *                         example: 3
- *       400:
- *         description: Requête invalide (données manquantes)
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 reponse:
- *                   type: string
- *                   example: vide
- *       403:
- *         description: Accès non autorisé (si les champs sont manquant)
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 reponse:
- *                   type: string
- *                   example: interdit
- *       500:
- *         description: Erreur interne du serveur
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 reponse:
- *                   type: string
- *                   example: erreur serveur
- */
 
 /**
  * @swagger
@@ -578,7 +512,7 @@
  *         schema:
  *           type: integer
  *           example: 1
- *         description: le mois en entier pour lequel récupérer le rapport
+ *         description: le mois en chaîne de caractère
  *     responses:
  *       200:
  *         description: la liste de présences et absences
@@ -667,7 +601,7 @@
  *         schema:
  *           type: integer
  *           example: 1
- *         description: le mois en entier pour lequel récupérer le rapport
+ *         description: le mois en chaîne de caractère
  *     responses:
  *       200:
  *         description: la liste de présences et absences
@@ -735,3 +669,70 @@
  */
 
 //==============================================================================================================================================
+
+/**
+ * @swagger
+ * /salaire-agent/{idAgent}/{mois}:
+ *   get:
+ *     summary: Récuperer le salaire mensuel d'un agent
+ *     tags: [RH]
+ *     parameters:
+ *       - in: path
+ *         name: idAgent
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           example: 1
+ *         description: L'ID de l'agent pour lequel on veux récupérer le salaire mensuel
+ *       - in: path
+ *         name: mois
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           example: 1
+ *         description: le mois en chaîne de caractère
+ *     responses:
+ *       200:
+ *         description: la liste de présences et absences
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 totalHeures:
+ *                   type: 160.00
+ *                   example: 1
+ *                 salaireMensuel:
+ *                   type: string
+ *                   example: 800.00 
+ *       400:
+ *         description: Requête invalide (données manquantes)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 reponse:
+ *                   type: string
+ *                   example: vide
+ *       403:
+ *         description: Accès non autorisé (si les champs sont manquant)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 reponse:
+ *                   type: string
+ *                   example: interdit
+ *       500:
+ *         description: Erreur interne du serveur
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 reponse:
+ *                   type: string
+ *                   example: erreur serveur
+ */

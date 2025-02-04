@@ -386,6 +386,47 @@ class Agent{
         }
     }
 
+    static async getSalaire(req, res){
+        try{
+            let {idAgent, mois} = req.params
+                    
+            if(typeof idAgent != "undefined" && typeof mois != "undefined"){
+                if(idAgent){
+                    //bloquer les injections
+                    idAgent = validator.escape(idAgent)
+                    //convertir en entier
+                    idAgent = Number(idAgent)
+                    mois = Number(mois)
+
+                    //l'année
+                    const date = new Date()
+                    const anneeActuelle = date.getFullYear();
+
+                    const rapport = await Presence.calculerSalaire(idAgent, mois, anneeActuelle)
+                    
+                    
+                    res.status(200).json({
+                        totalHeures: rapport.totalHeures,
+                        salaireMensuel: rapport.salaireMensuel
+                    })
+                }
+                else{
+                    res.status(400).json({reponse: "vide"})
+                }
+            }
+            else{
+                res.status(403).json({reponse: "interdit"})
+            }
+        }
+        catch(erreur){   
+            console.log(erreur);
+                                                                                  
+            res.status(500).json({
+                reponse: "erreur serveur"
+            })
+        }
+    }
+
 }
 
 module.exports = Agent

@@ -77,8 +77,57 @@ class Presence{
         
           return presenceData;
     }
-    
+  
 
+    static async calculerSalaire(agentId, mois, annee) {
+      const presences = await prisma.presence.findMany({
+        where: {
+          idAgent: agentId,
+          Date: {
+            gte: new Date(`${annee}-${mois}-01`),
+            lt: new Date(`${annee}-${mois + 1}-01`), // Limite supérieure (début du mois suivant)
+          },
+        },
+        select: {
+          HeureArrivee: true,
+          HeureSortie: true,
+        },
+      });
+    
+      if (!presences.length) {
+        return false
+      }
+    
+      // Calcul total des heures travaillées
+      let totalHeures = 0;
+      presences.forEach((presence) => {
+        const heuresTravaillees =
+          (new Date(presence.HeureSortie) - new Date(presence.HeureArrivee)) / 3600000; // Convertir ms en heures
+        totalHeures += heuresTravaillees;
+      });
+    
+      // Récupérer le salaire horaire de l'agent
+      const agent = await prisma.agent.findUnique({
+        where: { id: agentId },
+        select: {
+          titre: {
+            select: {
+              salaire: {
+                select: { Montant: true },
+              },
+            },
+          },
+        },
+      });
+    
+      const salaireHeure = agent.titre.salaire.Montant;
+      const salaireMensuel = totalHeures * salaireHeure;      
+    
+      return {
+        totalHeures: totalHeures.toFixed(2),
+        salaireMensuel: salaireMensuel.toFixed(2),
+      }
+    }
 }
 
 module.exports = Presence
