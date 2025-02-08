@@ -28,4 +28,4 @@ def rogner(dossier_entree, dossier_sortie, detector_backend="yolov8"):
         face = cv2.resize(face, (224, 224))
         plt.imsave(f"{dossier_sortie}/{nom_image}.jpg", face)
 
-rogner("../uploads/", "./vigage")
+rogner("../uploads/", "./visage")
