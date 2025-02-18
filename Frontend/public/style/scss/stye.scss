@@ -114,5 +114,136 @@ html {
         }
       }
     }
+    .d-container{
+      height: 100vh;
+      width: 100wv;
+      background-color: #035E87;
+      padding: 0.5em;
+      .d-container-body{
+        border-radius: 5px;
+        height: 100%;
+        background-color: white;
+        padding: 0.6em;
+        .d-cont-head {
+          .d-title{
+            display: flex;
+            align-items: center;
+            svg{
+              height: 1.5em;
+              path{
+                stroke: #09709E;
+              }
+            }
+            h3{
+              color: #09709E;
+              font-weight: 500;
+              font-size: 21px;
+            }
+          }
+        }
+        .d-cont-body{
+          display: flex;
+          justify-content: space-between;
+          padding: 0.8em;
+          margin-top: 2em;
+          height: 90.6%;
+          .list-dept {
+            width: 63%;
+            height: 100%;
+            .d-title-cont {
+              margin-top: 1em;
+              h3 {
+                font-weight: 520;
+                font-size: 20px;
+              }
+            }
+            .d-list-dept{
+              display: grid;
+              grid-template-columns: repeat(3,1fr);
+              gap: 1em;
+              margin-top: 1em;
+              .d-dept{
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                padding: 0.6em;
+                box-shadow: 0px 0px 1px #cecece;
+                border-left: 10px solid #09709E;
+                background-color: #F5F5F5;
+                border-radius: 3px;
+                h3{
+                  font-weight: 500;
+                  font-size: 15px;
+                }
+              }
+            }
+          }
+          .list-alea {
+            position: absolute;
+            top: 0.5em;
+            right: 0.5em;
+            width: 35%;
+            padding: 1em;
+            height: 97.4%;
+            background-color: #F5F5F5;
+            border-end-end-radius: 3px;
+            border-top-right-radius: 3px;
+            .d-title-cont {
+              margin-top: 2em;
+              h3 {
+                font-size: 25px;
+              }
+            }
+            .d-list-agent{
+              margin-top: 2em;
+              .d-agent{
+                cursor: pointer;
+                background-color: #ffffff;
+                box-shadow: 0px 0px 5px #f6f6f6;
+                padding: 0.6em;
+                border-radius: 5px;
+                display: flex;
+                align-items: center;
+                .d-round{
+                  width: 2em;
+                  height: 2em;
+                  border-radius: 50%;
+                  background-color: black;
+                  margin-right: 1em;
+                }
+                .agent-info{
+                  h3 {
+                    font-weight: 500;
+                    font-size: 17px;
+                  }
+                  .d-span{
+                    display: flex;
+                    gap: 0.8em;
+                    align-items: center;
+                    p{
+                      height: 1.8em;
+                      padding: 0.3em;
+                      text-align: center;
+                      font-size: 9px;
+                      display: flex;
+                      align-items: center;
+                      justify-content: space-between;
+                      background-color: #ffbaba;
+                      border-radius: 5px;
+                      span{
+                        margin-top: 0.2em;
+                        display: block;
+                        font-weight: 600;
+                        text-align: center;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
