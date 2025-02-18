@@ -1,0 +1,231 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Poppins;
+}
+
+html {
+  height: 100vh;
+  width: 100vw;
+}
+html body {
+  height: 100vh;
+  width: 100vw;
+}
+html body .d-container-form {
+  height: 100vh;
+  width: 100vw;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+html body .d-container-form .d-form .d-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html body .d-container-form .d-form form {
+  padding: 2em;
+  margin-top: 1em;
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: 0px 0px 10px #dadada;
+}
+html body .d-container-form .d-form form h3 {
+  font-weight: 600;
+}
+html body .d-container-form .d-form form .d-form-input {
+  margin-top: 0.8em;
+}
+html body .d-container-form .d-form form .d-form-input .d-input {
+  height: 3.3em;
+  border-radius: 3px;
+  border: 1px solid #797979;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+  padding-right: 0.8em;
+  padding-left: 0.8em;
+  background-color: white;
+  transition: all 0.3s ease-in-out;
+}
+html body .d-container-form .d-form form .d-form-input .d-input .d-inp {
+  height: 100%;
+  margin-left: 0.5em;
+}
+html body .d-container-form .d-form form .d-form-input .d-input .d-inp input {
+  border: none;
+  outline: none;
+  display: block;
+  height: 100%;
+}
+html body .d-container-form .d-form form .d-form-input .d-input .d-svg svg {
+  height: 100%;
+  display: block;
+}
+html body .d-container-form .d-form form .d-form-input .d-input .d-svg svg path {
+  transition: all 0.3s ease-in-out;
+  stroke: black;
+}
+html body .d-container-form .d-form form .d-form-input .d-input:nth-child(2) .d-svg svg path {
+  stroke: white;
+  fill: black;
+}
+html body .d-container-form .d-form form .d-form-input .d-input:hover {
+  border-color: #09709E;
+}
+html body .d-container-form .d-form form .d-form-input .d-input:hover .d-svg svg {
+  height: 100%;
+  display: block;
+}
+html body .d-container-form .d-form form .d-form-input .d-input:hover .d-svg svg path {
+  stroke: #09709E;
+}
+html body .d-container-form .d-form form .d-form-input .d-input:hover:nth-child(2) .d-svg svg path {
+  stroke: white;
+  fill: #09709E;
+}
+html body .d-container-form .d-form form input[type=submit] {
+  background-color: #09709E;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  padding: 1em;
+  height: 3.5em;
+  border-radius: 3px;
+  border: none;
+}
+html body .d-container {
+  height: 100vh;
+  width: 100wv;
+  background-color: #035E87;
+  padding: 0.5em;
+}
+html body .d-container .d-container-body {
+  border-radius: 5px;
+  height: 100%;
+  background-color: white;
+  padding: 0.6em;
+}
+html body .d-container .d-container-body .d-cont-head .d-title {
+  display: flex;
+  align-items: center;
+}
+html body .d-container .d-container-body .d-cont-head .d-title svg {
+  height: 1.5em;
+}
+html body .d-container .d-container-body .d-cont-head .d-title svg path {
+  stroke: #09709E;
+}
+html body .d-container .d-container-body .d-cont-head .d-title h3 {
+  color: #09709E;
+  font-weight: 500;
+  font-size: 21px;
+}
+html body .d-container .d-container-body .d-cont-body {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8em;
+  margin-top: 2em;
+  height: 90.6%;
+}
+html body .d-container .d-container-body .d-cont-body .list-dept {
+  width: 63%;
+  height: 100%;
+}
+html body .d-container .d-container-body .d-cont-body .list-dept .d-title-cont {
+  margin-top: 1em;
+}
+html body .d-container .d-container-body .d-cont-body .list-dept .d-title-cont h3 {
+  font-weight: 520;
+  font-size: 20px;
+}
+html body .d-container .d-container-body .d-cont-body .list-dept .d-list-dept {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+  margin-top: 1em;
+}
+html body .d-container .d-container-body .d-cont-body .list-dept .d-list-dept .d-dept {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.6em;
+  box-shadow: 0px 0px 1px #cecece;
+  border-left: 10px solid #09709E;
+  background-color: #F5F5F5;
+  border-radius: 3px;
+}
+html body .d-container .d-container-body .d-cont-body .list-dept .d-list-dept .d-dept h3 {
+  font-weight: 500;
+  font-size: 15px;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  width: 35%;
+  padding: 1em;
+  height: 97.4%;
+  background-color: #F5F5F5;
+  border-end-end-radius: 3px;
+  border-top-right-radius: 3px;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-title-cont {
+  margin-top: 2em;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-title-cont h3 {
+  font-size: 25px;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent {
+  margin-top: 2em;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .d-agent {
+  cursor: pointer;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 5px #f6f6f6;
+  padding: 0.6em;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .d-agent .d-round {
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  background-color: black;
+  margin-right: 1em;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .d-agent .agent-info h3 {
+  font-weight: 500;
+  font-size: 17px;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .d-agent .agent-info .d-span {
+  display: flex;
+  gap: 0.8em;
+  align-items: center;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .d-agent .agent-info .d-span p {
+  height: 1.8em;
+  padding: 0.3em;
+  text-align: center;
+  font-size: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffbaba;
+  border-radius: 5px;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .d-agent .agent-info .d-span p span {
+  margin-top: 0.2em;
+  display: block;
+  font-weight: 600;
+  text-align: center;
+}
+
+/*# sourceMappingURL=style.css.map */
