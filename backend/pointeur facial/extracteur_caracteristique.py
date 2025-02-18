@@ -9,8 +9,8 @@ import pickle
 model_name = "Facenet512"
 
 def normalisation(image):
-    clashe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
-    return clashe.apply(image)
+    norme = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+    return norme.apply(image)
 
 def extraire_caracteristique(dossier_entree, dossier_sortie, emb_file, norme_dir, model_name=model_name):
     os.makedirs(dossier_sortie, exist_ok=True)
@@ -18,7 +18,7 @@ def extraire_caracteristique(dossier_entree, dossier_sortie, emb_file, norme_dir
 
     try:
         with open(f"./{dossier_sortie}/{emb_file}", "rb") as fichier:
-            caracteristiques = pickle.loads(fichier)
+            caracteristiques = pickle.load(fichier)
             print("caracteristique extrait avec succes")
             print(caracteristiques)
     except FileNotFoundError:
@@ -31,14 +31,16 @@ def extraire_caracteristique(dossier_entree, dossier_sortie, emb_file, norme_dir
 
         if nom_image not in caracteristiques:
             face = cv2.imread(chemin_image, cv2.IMREAD_GRAYSCALE)
-
             face_norme = normalisation(face)
 
-            # # Assurez-vous que l'image est dans un format compatible
-            # if face.dtype != np.uint8:
-            #     face = (255 * face).astype(np.uint8)  # Normalisez et convertissez en uint8
+            if face_norme is None:
+                print("L'image normalisée est vide.")
 
-            face_norme = cv2.cvtColor(face_norme, cv2.COLOR_GRAY2BGR)
+            # Assurer que l'image est dans un format compatible pour cv2.cvtColor
+            if face_norme.dtype != np.uint8:
+                face_norme = (255 * face_norme).astype(np.uint8)  # Normalisez et convertissez en uint8
+            
+            face_norme = cv2.cvtColor(face_norme, cv2.COLOR_GRAY2RGB)
 
             plt.imsave(f"./{norme_dir}/{nom_image}.jpg", face_norme)
 
@@ -53,8 +55,13 @@ def extraire_caracteristique(dossier_entree, dossier_sortie, emb_file, norme_dir
             caracteristiques[nom_image] = caracteristique
 
     with open(f"./{dossier_sortie}/{emb_file}", "wb") as file:
-        pickle.dump(emb_file, file)
+        pickle.dump(caracteristiques, file)
         print("ok")
         print(caracteristiques.keys)
 
-extraire_caracteristique("./visage", "./caracteriques", "caracteristiques", "./visage_normalise")
+extraire_caracteristique(
+    dossier_entree="./visage",
+    dossier_sortie="./caracteristiques",
+    emb_file="caracteristiques.pkl",
+    norme_dir="./visage_normalise"
+)
