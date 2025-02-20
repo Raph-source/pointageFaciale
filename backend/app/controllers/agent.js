@@ -158,9 +158,7 @@ class Agent{
                     idDepartement = validator.escape(idDepartement)
                     //convertir en entier
                     idDepartement = Number(idDepartement)
-
                     const agents = await Agent_M.getAgentDepartemnt(idDepartement)
-                                            
                     res.status(200).json({
                         agents: agents
                     })

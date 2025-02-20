@@ -53,6 +53,7 @@ html body .d-container-form .d-form form .d-form-input .d-input {
 }
 html body .d-container-form .d-form form .d-form-input .d-input .d-inp {
   height: 100%;
+  width: 90%;
   margin-left: 0.5em;
 }
 html body .d-container-form .d-form form .d-form-input .d-input .d-inp input {
@@ -60,6 +61,7 @@ html body .d-container-form .d-form form .d-form-input .d-input .d-inp input {
   outline: none;
   display: block;
   height: 100%;
+  width: 100%;
 }
 html body .d-container-form .d-form form .d-form-input .d-input .d-svg svg {
   height: 100%;
@@ -186,6 +188,8 @@ html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent {
   margin-top: 2em;
 }
 html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .d-agent {
+  width: 90%;
+  position: relative;
   cursor: pointer;
   background-color: #ffffff;
   box-shadow: 0px 0px 5px #f6f6f6;
@@ -226,6 +230,79 @@ html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .
   display: block;
   font-weight: 600;
   text-align: center;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .d-agent .d-menu {
+  display: none;
+  z-index: -1;
+  position: absolute;
+  padding: 0.8em;
+  background-color: white;
+  top: 110%;
+  width: 100%;
+  left: 0;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .d-agent .d-menu .d-option {
+  padding: 0.1em;
+  margin-bottom: 0.2em;
+  padding-left: 0.5em;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .d-agent .d-menu .d-option span {
+  font-size: 15px;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .d-agent .d-menu .d-option:hover {
+  background-color: #e0e0e0;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .d-agent .d-menu-visible {
+  z-index: 2;
+  display: block;
+}
+html body .d-container .d-shift-cont {
+  position: fixed;
+  top: 30%;
+  right: -21em;
+  z-index: 4;
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+}
+html body .d-container .d-shift-cont .close {
+  padding: 0.5em;
+  background-color: #ff4d4d;
+  margin-right: 0.8em;
+  cursor: pointer;
+  border-radius: 50%;
+}
+html body .d-container .d-shift-cont .d-shift-body {
+  padding: 0.5em;
+  background-color: rgba(180, 180, 180, 0.36);
+  backdrop-filter: blur(20px);
+  margin-top: 0.2em;
+  display: flex;
+}
+html body .d-container .d-shift-cont .d-shift-body h3 {
+  font-weight: normal;
+  font-size: 15px;
+  margin-left: 0.8em;
+  display: flex;
+  align-items: center;
+}
+html body .d-container .d-shift-cont .d-shift-body h3 span {
+  text-align: center;
+  font-weight: 600;
+  padding: 0.2em;
+  border-radius: 5px;
+  color: #570000;
+  background-color: #ff7878;
+  display: block;
+  width: 3em;
+}
+html body .d-container .d-shift-cont .d-shift-body h3 .oui {
+  background-color: #acccff;
+  color: #002a2f;
+}
+html body .d-container .d-shift-cont-visible {
+  right: 1%;
 }
 
 /*# sourceMappingURL=style.css.map */

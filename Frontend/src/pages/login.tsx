@@ -1,4 +1,22 @@
+import {useForm} from "react-hook-form";
+import axios from "axios";
+import {UseReload} from "../hook/useReload.ts";
+import {useNavigate} from "react-router-dom";
+
 export const Login = () => {
+    const {register, handleSubmit} = useForm()
+    const {reset} = UseReload()
+    const navigate = useNavigate()
+    const onSubmit = async (data) =>{
+        try {
+            const response = await axios.post('http://localhost:3000/authentification', data)
+            localStorage.setItem("idAgent", response.data.agent.id)
+            navigate("/agent/accueil")
+        }catch (e) {
+            alert(e.response.data.reponse)
+            reset()
+        }
+    }
     return (
         <div className={"d-container-form"}>
             <div className={"d-form"}>
@@ -30,7 +48,7 @@ export const Login = () => {
                         </g>
                     </svg>
                 </div>
-                <form>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <h3>Bienvenu sur la page de connexion</h3>
                     <div className={"d-form-input"}>
                         <div className={"d-input"}>
@@ -59,7 +77,7 @@ export const Login = () => {
                                 </svg>
                             </div>
                             <div className={"d-inp"}>
-                                <input type="text"/>
+                                <input type="text" placeholder={"Matricule"} {...register("matricule",{required : true})} />
                             </div>
                         </div>
                         <div className={"d-input"}>
@@ -84,7 +102,7 @@ export const Login = () => {
 
                             </div>
                             <div className={"d-inp"}>
-                                <input type="text"/>
+                                <input type="password" placeholder={"Mot de passe"} {...register("mdp",{required : true})}/>
                             </div>
                         </div>
                         <input type="submit"/>

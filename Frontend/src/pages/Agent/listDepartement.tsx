@@ -1,6 +1,15 @@
+import {UseDepartement} from "../../hook/useDepartement.ts";
+import {useEffect} from "react";
+import {Agent} from "../../component/agent.tsx";
 
 
 export const ListDepartement = () => {
+    const {departement,getdeptAgentDpt, agentDptActive,close,
+        definirShitfNuit,definirShitfJour,shiftAgent,getShitAgent} = UseDepartement()
+    useEffect( () =>{
+
+    },[agentDptActive,shiftAgent])
+
     return (
         <div className={"d-container"}>
             <div className={"d-container-body"}>
@@ -43,59 +52,44 @@ export const ListDepartement = () => {
                             <h3>Liste des departements</h3>
                         </div>
                         <div className={"d-list-dept"}>
-                            <div className={"d-dept"}>
-                                <h3>Logistic</h3>
-                            </div>
-                            <div className={"d-dept"}>
-                                <h3>Logistic</h3>
-                            </div>
-                            <div className={"d-dept"}>
-                                <h3>Logistic</h3>
-                            </div>
-                            <div className={"d-dept"}>
-                                <h3>Logistic</h3>
-                            </div>
-                            <div className={"d-dept"}>
-                                <h3>Logistic</h3>
-                            </div>
-                            <div className={"d-dept"}>
-                                <h3>Logistic</h3>
-                            </div>
-                            <div className={"d-dept"}>
-                                <h3>Logistic</h3>
-                            </div>
-                            <div className={"d-dept"}>
-                                <h3>Logistic</h3>
-                            </div>
-                            <div className={"d-dept"}>
-                                <h3>Logistic</h3>
-                            </div>
-                            <div className={"d-dept"}>
-                                <h3>Logistic</h3>
-                            </div>
-
-
+                            {
+                                departement && departement.map((dpt) => <div className={"d-dept"} onClick={getdeptAgentDpt}
+                                id={dpt.id}>
+                                    <h3 id={dpt.id}>{dpt.Nom}</h3>
+                                </div>)
+                            }
                         </div>
                     </div>
                     <div className={"list-alea"}>
-                        <div className={"d-title-cont"}>
-                        <h3>Agents - <span>IT</span></h3>
-                        </div>
-                        <div className={"d-list-agent"}>
-                            <div className={"d-agent"}>
-                                <div className={"d-round"}>
-
-                                </div>
-                                <div className={"agent-info"}>
-                                    <h3>Elie kipata</h3>
-                                    <div className={"d-span"}>
-                                    <p><span>20km245</span></p> <p><span>Manager IT</span></p>
-                                    </div>
-                                </div>
+                            <div className={"d-title-cont"}>
+                                <h3>Agents - <span>IT</span></h3>
                             </div>
-                        </div>
+                            <div className={"d-list-agent"}>
+                                {
+                                    agentDptActive.length > 0 ?
+                                        agentDptActive.map((agetDpt,key) => <Agent agentDpt={agetDpt}
+                                        place={key} handleShiftNuit={definirShitfNuit} handleShiftJour={definirShitfJour}
+                                        handleShiftAgent={getShitAgent}/>)
+                                        : <h3>la liste est vide</h3>
+                                }
+                            </div>
                     </div>
                 </div>
+            </div>
+            <div className={"d-modal-shift"}>
+                <div className={"d-shift-head"}>
+                    <div className={"close"}></div>
+                </div>
+                <div className={"d-shift-cont"}>
+                    <div className={"close"} onClick={close} id={"d-shift-cont-visible"}></div>
+                    <div className={"d-shift-body"}>
+                        <h3>Shift jour : {shiftAgent && shiftAgent.jour ? <span className={"oui"}>Oui</span> :
+                            <span className={"non"}>Non</span>}</h3>
+                        <h3>Shift nuit : {shiftAgent && shiftAgent.nuit ? <span className={"oui"}>Oui</span> :
+                            <span className={"non"}>Non</span>}</h3>
+                    </div>
+                </div>
+
             </div>
         </div>
     );
