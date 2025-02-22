@@ -3,8 +3,10 @@ import axios from "axios";
 
 export const UseDepartement = () =>{
     const [departement, setDepartement] = useState([])
+    const [titre, setTitre] = useState(null)
     const [agentDptActive, setAgentDptActive] = useState([])
     const [shiftAgent, setShiftAgant] = useState([])
+    const [dptActive, setDptActive] = useState(null)
 
     useEffect(() => {
         getDepartement()
@@ -13,10 +15,13 @@ export const UseDepartement = () =>{
     const getDepartement =  async ()=>{
         const response = await axios.get("http://localhost:3000/departement-titre")
         setDepartement(response.data.departement)
+        setTitre(response.data.titre)
     }
     const getdeptAgentDpt = async  (e) =>{
         const id = parseInt(e.target.id)
         const response = await axios.get(`http://localhost:3000/agent-departement/${id}`);
+        const deptActive = departement.filter((dept) => dept.id === id)
+        setDptActive(deptActive[0])
         setAgentDptActive(response.data.agents)
     }
     const definirShitfJour = async  (e) =>{
@@ -46,11 +51,18 @@ export const UseDepartement = () =>{
         console.log(response.data)
         setShiftAgant(response.data)
     }
+    const getRapport = async (e) =>{
+        const idDepartement = e.target.id
+        const mois = "2"
+        const response = await axios.get(`http://localhost:3000/rapport-pointage-departement/${idDepartement}/${mois}`)
+        console.log(response)
+    }
     const close = (e) =>{
         const classRemove = e.target.id
         document.querySelector(`.${classRemove}`).classList.remove(classRemove)
     }
 
     return {departement,getdeptAgentDpt,agentDptActive,
-        definirShitfNuit,definirShitfJour,shiftAgent,getShitAgent,close}
+        definirShitfNuit,definirShitfJour,shiftAgent,getShitAgent,close,dptActive
+    ,titre}
 }

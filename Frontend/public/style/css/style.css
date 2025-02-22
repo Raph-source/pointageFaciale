@@ -12,6 +12,7 @@ html {
 html body {
   height: 100vh;
   width: 100vw;
+  transition: all 0.3s ease-in-out;
 }
 html body .d-container-form {
   height: 100vh;
@@ -184,10 +185,40 @@ html body .d-container .d-container-body .d-cont-body .list-alea .d-title-cont {
 html body .d-container .d-container-body .d-cont-body .list-alea .d-title-cont h3 {
   font-size: 25px;
 }
-html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent {
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option {
   margin-top: 2em;
 }
-html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .d-agent {
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-option-dpt {
+  display: flex;
+  gap: 0.8em;
+  align-items: center;
+  height: 2em;
+  margin-bottom: 1em;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-option-dpt .d-opt {
+  cursor: pointer;
+  height: 100%;
+  padding: 0.8em;
+  background-color: white;
+  border-radius: 3px;
+  width: 10em;
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  transition: all 0.3s ease-in-out;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-option-dpt .d-opt span {
+  font-size: 11px;
+  font-weight: 500;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-option-dpt .d-opt:hover {
+  background-color: #8cc2de;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-list-agent {
+  height: 26em;
+  overflow-y: scroll;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-list-agent .d-agent {
   width: 90%;
   position: relative;
   cursor: pointer;
@@ -197,24 +228,25 @@ html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .
   border-radius: 5px;
   display: flex;
   align-items: center;
+  margin-bottom: 0.8em;
 }
-html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .d-agent .d-round {
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-list-agent .d-agent .d-round {
   width: 2em;
   height: 2em;
   border-radius: 50%;
   background-color: black;
   margin-right: 1em;
 }
-html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .d-agent .agent-info h3 {
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-list-agent .d-agent .agent-info h3 {
   font-weight: 500;
   font-size: 17px;
 }
-html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .d-agent .agent-info .d-span {
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-list-agent .d-agent .agent-info .d-span {
   display: flex;
   gap: 0.8em;
   align-items: center;
 }
-html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .d-agent .agent-info .d-span p {
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-list-agent .d-agent .agent-info .d-span p {
   height: 1.8em;
   padding: 0.3em;
   text-align: center;
@@ -225,13 +257,13 @@ html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .
   background-color: #ffbaba;
   border-radius: 5px;
 }
-html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .d-agent .agent-info .d-span p span {
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-list-agent .d-agent .agent-info .d-span p span {
   margin-top: 0.2em;
   display: block;
   font-weight: 600;
   text-align: center;
 }
-html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .d-agent .d-menu {
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-list-agent .d-agent .d-menu {
   display: none;
   z-index: -1;
   position: absolute;
@@ -241,18 +273,18 @@ html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .
   width: 100%;
   left: 0;
 }
-html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .d-agent .d-menu .d-option {
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-list-agent .d-agent .d-menu .d-option {
   padding: 0.1em;
   margin-bottom: 0.2em;
   padding-left: 0.5em;
 }
-html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .d-agent .d-menu .d-option span {
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-list-agent .d-agent .d-menu .d-option span {
   font-size: 15px;
 }
-html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .d-agent .d-menu .d-option:hover {
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-list-agent .d-agent .d-menu .d-option:hover {
   background-color: #e0e0e0;
 }
-html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent .d-agent .d-menu-visible {
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-list-agent .d-agent .d-menu-visible {
   z-index: 2;
   display: block;
 }
@@ -303,6 +335,135 @@ html body .d-container .d-shift-cont .d-shift-body h3 .oui {
 }
 html body .d-container .d-shift-cont-visible {
   right: 1%;
+}
+html body .d-container .d-agent-add {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  visibility: hidden;
+  background-color: white;
+  padding: 0.8em;
+  top: 45%;
+  transition: all 0.3s ease-in-out;
+}
+html body .d-container .d-agent-add .d-agent-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+html body .d-container .d-agent-add .d-agent-head .close {
+  padding: 0.5em;
+  background-color: #ff5858;
+  border-radius: 50%;
+  cursor: pointer;
+}
+html body .d-container .d-agent-add .d-agent-body {
+  margin-top: 1em;
+}
+html body .d-container .d-agent-add .d-agent-body input, html body .d-container .d-agent-add .d-agent-body select {
+  padding: 0.5em;
+  width: 100%;
+  margin-top: 0.9em;
+  border-radius: 3px;
+  border: 1px solid #7e7e7e;
+  transition: all 0.3s ease-in-out;
+  outline: none;
+}
+html body .d-container .d-agent-add .d-agent-body input:hover, html body .d-container .d-agent-add .d-agent-body select:hover {
+  border-color: #035E87;
+}
+html body .d-container .d-agent-add .d-agent-body input[type=submit] {
+  border: none;
+  background-color: #035E87;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+html body .d-container .d-modal-rapport {
+  width: 70%;
+  position: absolute;
+  top: 45%;
+  visibility: hidden;
+  z-index: -1;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0.8em;
+  background-color: #ffffff;
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+}
+html body .d-container .d-modal-rapport .d-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+html body .d-container .d-modal-rapport .d-head .close {
+  cursor: pointer;
+  padding: 0.5em;
+  background-color: #ff5656;
+  border-radius: 50%;
+}
+html body .d-container .d-modal-rapport .d-month {
+  margin-top: 0.8em;
+}
+html body .d-container .d-modal-rapport .d-month select {
+  padding: 0.5em;
+  background-color: #e7e7e7;
+  outline: none;
+}
+html body .d-container .d-modal-rapport .d-body .d-head-table {
+  display: grid;
+  padding: 0.5em;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: space-between;
+  margin-top: 0.8em;
+  gap: 1em;
+}
+html body .d-container .d-modal-rapport .d-body .d-head-table .th span {
+  font-weight: 600;
+}
+html body .d-container .d-modal-rapport .d-body .d-body-table {
+  display: grid;
+  padding: 0.5em;
+  background-color: #ececec;
+  border-radius: 3px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1em;
+  margin-bottom: 0.5em;
+}
+html body.d-modal-agent:after {
+  content: "";
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.82);
+  position: absolute;
+  top: 0;
+}
+html body.d-modal-agent .d-container .d-agent-add {
+  visibility: visible;
+  z-index: 3;
+  top: 50%;
+}
+html body.d-modal-agent .d-container .d-menu {
+  display: none !important;
+}
+html body.d-modal-rapport-visible:after {
+  content: "";
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.82);
+  position: absolute;
+  top: 0;
+}
+html body.d-modal-rapport-visible .d-container .d-menu {
+  display: none !important;
+}
+html body.d-modal-rapport-visible .d-modal-rapport {
+  top: 50%;
+  visibility: visible;
+  z-index: 3;
+  transition: all 0.3s ease-in-out;
 }
 
 /*# sourceMappingURL=style.css.map */

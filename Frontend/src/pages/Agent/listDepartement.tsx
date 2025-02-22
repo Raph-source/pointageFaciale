@@ -1,15 +1,21 @@
 import {UseDepartement} from "../../hook/useDepartement.ts";
 import {useEffect} from "react";
 import {Agent} from "../../component/agent.tsx";
+import {AddAgent} from "../../component/addAgent.tsx";
+import {UseModal} from "../../hook/useModal.ts";
+import {RapportPointage} from "../../component/rapportPointage.tsx";
 
 
 export const ListDepartement = () => {
     const {departement,getdeptAgentDpt, agentDptActive,close,
-        definirShitfNuit,definirShitfJour,shiftAgent,getShitAgent} = UseDepartement()
+        definirShitfNuit,definirShitfJour,shiftAgent,getShitAgent,dptActive,titre} = UseDepartement()
+
+    const {addClass, removeClass} = UseModal("d-modal-agent")
+    const {  addClass : addReport, removeClass : removeReport } = UseModal("d-modal-rapport-visible");
+
     useEffect( () =>{
 
     },[agentDptActive,shiftAgent])
-
     return (
         <div className={"d-container"}>
             <div className={"d-container-body"}>
@@ -62,16 +68,55 @@ export const ListDepartement = () => {
                     </div>
                     <div className={"list-alea"}>
                             <div className={"d-title-cont"}>
-                                <h3>Agents - <span>IT</span></h3>
+                                <h3>{dptActive ? <span>Agents - {dptActive.Nom}</span> : <span>Selectionnez un departement</span>}</h3>
                             </div>
-                            <div className={"d-list-agent"}>
-                                {
-                                    agentDptActive.length > 0 ?
-                                        agentDptActive.map((agetDpt,key) => <Agent agentDpt={agetDpt}
-                                        place={key} handleShiftNuit={definirShitfNuit} handleShiftJour={definirShitfJour}
-                                        handleShiftAgent={getShitAgent}/>)
-                                        : <h3>la liste est vide</h3>
-                                }
+                            <div className={"d-list-agent-option"}>
+                                <div className={"d-option-dpt"}>
+                                    {dptActive ? <><div className={"d-opt"}  id={dptActive.id}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="13.5" height="13.5" viewBox="0 0 13.5 13.5">
+                                            <g id="Groupe_23" data-name="Groupe 23"
+                                               transform="translate(-2.25 -2.25)">
+                                                <path id="Tracé_23" data-name="Tracé 23"
+                                                      d="M3,9A6,6,0,1,0,9,3,6,6,0,0,0,3,9" fill="none" stroke="#000"
+                                                      stroke-linecap="round" stroke-linejoin="round"
+                                                      stroke-width="1.5"/>
+                                                <path id="Tracé_24" data-name="Tracé 24" d="M9,12h4"
+                                                      transform="translate(-2 -3)" fill="none" stroke="#000"
+                                                      stroke-linecap="round" stroke-linejoin="round"
+                                                      stroke-width="1.5"/>
+                                                <path id="Tracé_25" data-name="Tracé 25" d="M12,9v4"
+                                                      transform="translate(-3 -2)" fill="none" stroke="#000"
+                                                      stroke-linecap="round" stroke-linejoin="round"
+                                                      stroke-width="1.5"/>
+                                            </g>
+                                        </svg>
+                                        <span id={dptActive.id} onClick={addClass}>Ajouter un agent</span></div>
+                                        <div className={"d-opt"} id={dptActive.id}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                 stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                 width="24" height="24" stroke-width="1.5">
+                                                <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                                <path
+                                                    d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
+                                                <path d="M9 17l0 -5"></path>
+                                                <path d="M12 17l0 -1"></path>
+                                                <path d="M15 17l0 -3"></path>
+                                            </svg>
+                                            <span id={dptActive.id} onClick={addReport}>Rapport mensuel</span></div>
+                                    </> : ""}
+                                </div>
+                                <div className={"d-list-agent"}>
+                                    {
+                                        agentDptActive.length > 0 ?
+                                            agentDptActive.map((agetDpt, key) => <Agent agentDpt={agetDpt}
+                                                                                        place={key}
+                                                                                        key = {key}
+                                                                                        handleShiftNuit={definirShitfNuit}
+                                                                                        handleShiftJour={definirShitfJour}
+                                                                                        handleShiftAgent={getShitAgent}/>)
+                                            : <h3>la liste est vide</h3>
+                                    }
+                                </div>
                             </div>
                     </div>
                 </div>
@@ -91,6 +136,8 @@ export const ListDepartement = () => {
                 </div>
 
             </div>
+            <AddAgent titre={titre} handleRemove={removeClass} dptActive={dptActive}/>
+            <RapportPointage handleRemove={removeReport} dpt={dptActive}/>
         </div>
     );
 };

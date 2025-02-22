@@ -305,11 +305,13 @@ class Agent{
 
     static async getRapportPointageDepartement(req, res){
         try{
+            console.log(req.params)
             let {idDepartement, mois} = req.params
                     
             if(typeof idDepartement != "undefined" && typeof mois != "undefined"){
                 if(idDepartement){
                     //bloquer les injections
+
                     idDepartement = validator.escape(idDepartement)
                     //convertir en entier
                     idDepartement = Number(idDepartement)

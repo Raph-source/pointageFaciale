@@ -1,6 +1,6 @@
 import {Menu} from "./menu.tsx";
 
-export const Agent = ({agentDpt ,place,handleShiftNuit,handleShiftJour,handleShiftAgent}) => {
+export const Agent = ({agentDpt ,place,key,handleShiftNuit,handleShiftJour,handleShiftAgent}) => {
     const onVisble = (e) =>{
         const id = e.target.id
         const menu = document.querySelectorAll(".d-menu")
@@ -8,7 +8,7 @@ export const Agent = ({agentDpt ,place,handleShiftNuit,handleShiftJour,handleShi
        // menu.classList.toggle('d-menu-visible')
     }
     return (
-        <div className={"d-agent"} onClick={onVisble} id={place}>
+        <div className={"d-agent"} onClick={onVisble} id={place} key={key}>
             <div className={"d-round"} id={place}>
 
             </div>
