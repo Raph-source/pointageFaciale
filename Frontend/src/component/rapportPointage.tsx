@@ -7,10 +7,9 @@ export const RapportPointage = ({handleRemove,dpt}) => {
     const {reset} = UseReload()
 
     const onChange = async (data) =>{
-        const Ndata = {...data, idDepartement : dpt.id}
+        const Ndata = {...data, idDepartement : String(dpt.id)}
         const response = await axios.get(`http://localhost:3000/rapport-pointage-departement/${Ndata.idDepartement}/${Ndata.mois}`)
-        reset()
-        console.log(response)
+
     }
 
     return (

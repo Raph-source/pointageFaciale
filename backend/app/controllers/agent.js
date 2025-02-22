@@ -305,7 +305,6 @@ class Agent{
 
     static async getRapportPointageDepartement(req, res){
         try{
-            console.log(req.params)
             let {idDepartement, mois} = req.params
                     
             if(typeof idDepartement != "undefined" && typeof mois != "undefined"){
