@@ -29,10 +29,18 @@ export const UseDepartement = () =>{
             const idAgent = parseInt(e.target.id)
             const response = await axios.put(`http://localhost:3000/shift-jour/${idAgent}`);
             alert(response.data.reponse)
-        }catch (e) {
+        }
+        catch (e) {
             alert(e.response.data.reponse)
         }
+    }
+    const definirSalaite = (e) =>{
+        try {
 
+        }
+        catch (e) {
+
+        }
     }
     const definirShitfNuit = async  (e) =>{
         try {

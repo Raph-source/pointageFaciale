@@ -9,7 +9,7 @@ export const RapportAgent = ({handleRemove,agt}) => {
     const onChange = async (data) =>{
         const Ndata = {...data, idDepartement : String(agt.id)}
         const response = await axios.get(`http://localhost:3000/rapport-pointage-departement/${Ndata.idDepartement}/${Ndata.mois}`)
-        
+
     }
 
     return (

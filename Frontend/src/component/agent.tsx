@@ -1,6 +1,6 @@
 import {Menu} from "./menu.tsx";
 
-export const Agent = ({agentDpt ,place,key,handleAdd,handleShiftNuit,handleShiftJour,handleShiftAgent}) => {
+export const Agent = ({agentDpt ,place,key,handleAdd,handleSalAdd,handleShiftNuit,handleShiftJour,handleShiftAgent}) => {
     const onVisble = (e) =>{
         const id = e.target.id
         const menu = document.querySelectorAll(".d-menu")
@@ -18,7 +18,7 @@ export const Agent = ({agentDpt ,place,key,handleAdd,handleShiftNuit,handleShift
                     <p id={place} onClick={onVisble}><span id={place} onClick={onVisble}>{agentDpt.Matricule}</span></p>
                 </div>
             </div>
-            <Menu onDefineShiftJour={handleShiftJour} onHandleAdd={handleAdd}
+            <Menu onDefineShiftJour={handleShiftJour} onHandleAdd={handleAdd} onSalaireAdd={handleSalAdd}
                   onDefineShiftNuit={handleShiftNuit} idAgent={agentDpt.id} onShiftAgent={handleShiftAgent}/>
         </div>
     );

@@ -5,6 +5,7 @@ import {AddAgent} from "../../component/addAgent.tsx";
 import {UseModal} from "../../hook/useModal.ts";
 import {RapportPointage} from "../../component/rapportPointage.tsx";
 import {RapportAgent} from "../../component/rapportAgent.tsx";
+import {SalaireAgent} from "../../component/salaireAgent.tsx";
 
 
 export const ListDepartement = () => {
@@ -14,6 +15,7 @@ export const ListDepartement = () => {
     const {addClass, removeClass} = UseModal("d-modal-agent")
     const {  addClass : addReport, removeClass : removeReport } = UseModal("d-modal-rapport-visible");
     const {  addClass : addC, removeClass : remC } = UseModal("d-modal-rapport-agent-visible");
+    const {  addClass : add, removeClass : rem } = UseModal('d-modal-agent-salaire-visible')
     useEffect( () =>{
 
     },[agentDptActive,shiftAgent])
@@ -114,6 +116,7 @@ export const ListDepartement = () => {
                                                                                         place={key}
                                                                                         key = {key}
                                                                                         handleAdd={addC}
+                                                                                        handleSalAdd={add}
                                                                                         handleShiftNuit={definirShitfNuit}
                                                                                         handleShiftJour={definirShitfJour}
                                                                                         handleShiftAgent={getShitAgent}/>)
@@ -142,6 +145,7 @@ export const ListDepartement = () => {
             <AddAgent titre={titre} handleRemove={removeClass} dptActive={dptActive}/>
             <RapportPointage handleRemove={removeReport} dpt={dptActive}/>
             <RapportAgent handleRemove={remC} agt={agentDptActive}/>
+            <SalaireAgent handleRemove={rem}  agt={agentDptActive}/>
         </div>
     );
 };

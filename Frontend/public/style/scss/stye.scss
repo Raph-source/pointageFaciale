@@ -507,6 +507,61 @@ html {
           }
         }
       }
+      .d-modal-agent-salaire{
+        width: 40%;
+        position: absolute;
+        top: 45%;
+        visibility: hidden;
+        z-index: -1;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        padding: 0.8em;
+        background-color: #ffffff;
+        border-radius: 3px;
+        transition: all 0.3s ease-in-out;
+        .d-head{
+          display: flex;
+          justify-content: space-between;align-items: center;
+          .close{
+            cursor: pointer;
+            padding: 0.5em;
+            background-color: #ff5656;
+            border-radius: 50%;
+          }
+        }
+        .d-month{
+          margin-top: 0.8em;
+          select{
+            padding: 0.5em;
+            background-color: #e7e7e7;
+            outline: none;
+          }
+        }
+        .d-body{
+          .d-head-table{
+            display: grid;
+            padding: 0.5em;
+            grid-template-columns: repeat(2,1fr);
+            justify-content: space-between;
+            margin-top: 0.8em;
+            gap: 1em;
+            .th{
+              span{
+                font-weight: 600;
+              }
+            }
+          }
+          .d-body-table{
+            display: grid;
+            padding: 0.5em;
+            background-color: #ececec;
+            border-radius: 3px;
+            grid-template-columns: repeat(2,1fr);
+            gap: 1em;
+            margin-bottom: 0.5em;
+          }
+        }
+      }
     }
 
   }
@@ -566,6 +621,27 @@ html {
       }
     }
     .d-modal-rapport-agent{
+      top: 50%;
+      visibility: visible;
+      z-index: 3;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+  body.d-modal-agent-salaire-visible {
+    &:after{
+      content: "";
+      height: 100vh;
+      width: 100vw;
+      background-color: rgba(0, 0, 0, 0.82);
+      position: absolute;
+      top: 0;
+    }
+    .d-container{
+      .d-menu{
+        display: none!important;
+      }
+    }
+    .d-modal-agent-salaire{
       top: 50%;
       visibility: visible;
       z-index: 3;
