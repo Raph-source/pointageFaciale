@@ -4,6 +4,7 @@ import {Agent} from "../../component/agent.tsx";
 import {AddAgent} from "../../component/addAgent.tsx";
 import {UseModal} from "../../hook/useModal.ts";
 import {RapportPointage} from "../../component/rapportPointage.tsx";
+import {RapportAgent} from "../../component/rapportAgent.tsx";
 
 
 export const ListDepartement = () => {
@@ -12,7 +13,7 @@ export const ListDepartement = () => {
 
     const {addClass, removeClass} = UseModal("d-modal-agent")
     const {  addClass : addReport, removeClass : removeReport } = UseModal("d-modal-rapport-visible");
-
+    const {  addClass : addC, removeClass : remC } = UseModal("d-modal-rapport-agent-visible");
     useEffect( () =>{
 
     },[agentDptActive,shiftAgent])
@@ -108,9 +109,11 @@ export const ListDepartement = () => {
                                 <div className={"d-list-agent"}>
                                     {
                                         agentDptActive.length > 0 ?
-                                            agentDptActive.map((agetDpt, key) => <Agent agentDpt={agetDpt}
+                                            agentDptActive.map((agetDpt, key) => <Agent
+                                                                                        agentDpt={agetDpt}
                                                                                         place={key}
                                                                                         key = {key}
+                                                                                        handleAdd={addC}
                                                                                         handleShiftNuit={definirShitfNuit}
                                                                                         handleShiftJour={definirShitfJour}
                                                                                         handleShiftAgent={getShitAgent}/>)
@@ -138,6 +141,7 @@ export const ListDepartement = () => {
             </div>
             <AddAgent titre={titre} handleRemove={removeClass} dptActive={dptActive}/>
             <RapportPointage handleRemove={removeReport} dpt={dptActive}/>
+            <RapportAgent handleRemove={remC} agt={agentDptActive}/>
         </div>
     );
 };

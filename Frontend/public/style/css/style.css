@@ -432,6 +432,58 @@ html body .d-container .d-modal-rapport .d-body .d-body-table {
   gap: 1em;
   margin-bottom: 0.5em;
 }
+html body .d-container .d-modal-rapport-agent {
+  width: 70%;
+  position: absolute;
+  top: 45%;
+  visibility: hidden;
+  z-index: -1;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0.8em;
+  background-color: #ffffff;
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+}
+html body .d-container .d-modal-rapport-agent .d-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+html body .d-container .d-modal-rapport-agent .d-head .close {
+  cursor: pointer;
+  padding: 0.5em;
+  background-color: #ff5656;
+  border-radius: 50%;
+}
+html body .d-container .d-modal-rapport-agent .d-month {
+  margin-top: 0.8em;
+}
+html body .d-container .d-modal-rapport-agent .d-month select {
+  padding: 0.5em;
+  background-color: #e7e7e7;
+  outline: none;
+}
+html body .d-container .d-modal-rapport-agent .d-body .d-head-table {
+  display: grid;
+  padding: 0.5em;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: space-between;
+  margin-top: 0.8em;
+  gap: 1em;
+}
+html body .d-container .d-modal-rapport-agent .d-body .d-head-table .th span {
+  font-weight: 600;
+}
+html body .d-container .d-modal-rapport-agent .d-body .d-body-table {
+  display: grid;
+  padding: 0.5em;
+  background-color: #ececec;
+  border-radius: 3px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1em;
+  margin-bottom: 0.5em;
+}
 html body.d-modal-agent:after {
   content: "";
   height: 100vh;
@@ -460,6 +512,23 @@ html body.d-modal-rapport-visible .d-container .d-menu {
   display: none !important;
 }
 html body.d-modal-rapport-visible .d-modal-rapport {
+  top: 50%;
+  visibility: visible;
+  z-index: 3;
+  transition: all 0.3s ease-in-out;
+}
+html body.d-modal-rapport-agent-visible:after {
+  content: "";
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.82);
+  position: absolute;
+  top: 0;
+}
+html body.d-modal-rapport-agent-visible .d-container .d-menu {
+  display: none !important;
+}
+html body.d-modal-rapport-agent-visible .d-modal-rapport-agent {
   top: 50%;
   visibility: visible;
   z-index: 3;
