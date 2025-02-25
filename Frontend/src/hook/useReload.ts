@@ -8,5 +8,6 @@ export const UseReload = () =>{
             }
         })
     }
+
     return {reset}
 }
