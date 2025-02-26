@@ -72,7 +72,6 @@ export const RapportPointage = ({handleRemove, dpt, handllGetReport}) => {
                 </div>)}
 
             </div> : <h4>Aucun rapport pour ce mois</h4> : <h4>Selectionnez le mois</h4>}
-
         </div>
     );
 };

@@ -1,15 +1,20 @@
 import {useForm} from "react-hook-form";
 import axios from "axios";
 import {UseReload} from "../hook/useReload.ts";
+import {useState} from "react";
 
-export const SalaireAgent = ({handleRemove,agt}) => {
+export const SalaireAgent = ({handleRemove,idAgent,handleSalaire}) => {
     const {register, handleSubmit} = useForm()
+    const [rapport,setRapport] = useState(null)
     const {reset} = UseReload()
 
-    const onChange = async (data) =>{
-        const Ndata = {...data, idDepartement : String(agt.id)}
-        const response = await axios.get(`http://localhost:3000/rapport-pointage-departement/${Ndata.idDepartement}/${Ndata.mois}`)
-
+    const onChange = async (e) => {
+        const Ndata = {mois: e.target.value, idAgent: String(idAgent)}
+        console.log(Ndata)
+        const response = await  handleSalaire(Ndata)//axios.get(`http://localhost:3000/rapport-pointage-departement/${Ndata.idDepartement}/${Ndata.mois}`)
+        reset()
+        setRapport(response.data.rapport)
+        console.log(response)
     }
 
     return (
@@ -21,7 +26,7 @@ export const SalaireAgent = ({handleRemove,agt}) => {
                 </div>
             </div>
             <div className={"d-month"}>
-                <select {...register('mois', {required: true})} onChange={handleSubmit(onChange)}>
+                <select {...register('mois', {required: true})} onChange={onChange}>
                     <option value="" disabled={true}>Selectionner un mois</option>
                     <option value="1">Janvier</option>
                     <option value="2">Fevrier</option>
@@ -40,22 +45,26 @@ export const SalaireAgent = ({handleRemove,agt}) => {
                 </select>
             </div>
             <div className={"d-body"}>
-                <div className={"d-head-table"}>
-                    <div className={'th'}>
-                        <span>Total Heure salaire</span>
-                    </div>
-                    <div className={'th'}>
-                        <span>Salaire mensuel</span>
-                    </div>
-                </div>
-                <div className={"d-body-table"}>
-                    <div className={'td'}>
-                        <span>20KL224</span>
-                    </div>
-                    <div className={'td'}>
-                        <span>Kipata mulubwe elie</span>
-                    </div>
-                </div>
+                {
+                    rapport ? <>
+                        <div className={"d-head-table"}>
+                            <div className={'th'}>
+                                <span>Total Heure salaire</span>
+                            </div>
+                            <div className={'th'}>
+                                <span>Salaire mensuel</span>
+                            </div>
+                        </div>
+                        <div className={"d-body-table"}>
+                            <div className={'td'}>
+                                <span>{rapport.totalHeures}</span>
+                            </div>
+                            <div className={'td'}>
+                                <span>{rapport.salaireMensuel}</span>
+                            </div>
+                        </div>
+                    </> : <h4>Aucune option selectionnée</h4>
+                }
             </div>
         </div>
     );

@@ -65,12 +65,24 @@ export const UseDepartement = () =>{
         const response = await axios.get(`http://localhost:3000/rapport-pointage-departement/${idDepartement}/${mois}`)
         return  response
     }
+    const getRapportAgent = async (data) =>{
+        const idAgent = data.idAgent
+        const mois =data.mois
+        const response = await axios.get(`http://localhost:3000/rapport-pointage-agent/${idAgent}/${mois}`)
+        return  response
+    }
+    const getSalaire = async (data) =>{
+        const idAgent = data.idAgent
+        const mois =data.mois
+        const response = await axios.get(`http://localhost:3000/salaire-agent/${idAgent}/${mois}`)
+        return  response
+    }
     const close = (e) =>{
         const classRemove = e.target.id
         document.querySelector(`.${classRemove}`).classList.remove(classRemove)
     }
 
-    return {departement,getdeptAgentDpt,agentDptActive,
-        definirShitfNuit,definirShitfJour,shiftAgent,getShitAgent,close,dptActive,getRapportDpt
+    return {departement,getdeptAgentDpt,agentDptActive,getSalaire,
+        definirShitfNuit,definirShitfJour,shiftAgent,getShitAgent,close,dptActive,getRapportDpt,getRapportAgent
     ,titre}
 }
