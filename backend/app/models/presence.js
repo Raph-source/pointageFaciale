@@ -3,7 +3,7 @@ const prisma = new PrismaClient()
 
 class Presence{
     // retourne les données de la présence des agents d'un departement
-    static async getRapportDepartement(idAgent, mois, anneeActuelle){
+    static async getRapportDepartement(idDepartement, mois, anneeActuelle){
         const presenceData = await prisma.presence.findMany({
             where: {
               agent: {

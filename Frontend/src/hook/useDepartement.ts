@@ -59,18 +59,30 @@ export const UseDepartement = () =>{
         console.log(response.data)
         setShiftAgant(response.data)
     }
-    const getRapport = async (e) =>{
-        const idDepartement = e.target.id
-        const mois = "2"
+    const getRapportDpt = async (data) =>{
+        const idDepartement = data.idDepartement
+        const mois =data.mois
         const response = await axios.get(`http://localhost:3000/rapport-pointage-departement/${idDepartement}/${mois}`)
-        console.log(response)
+        return  response
+    }
+    const getRapportAgent = async (data) =>{
+        const idAgent = data.idAgent
+        const mois =data.mois
+        const response = await axios.get(`http://localhost:3000/rapport-pointage-agent/${idAgent}/${mois}`)
+        return  response
+    }
+    const getSalaire = async (data) =>{
+        const idAgent = data.idAgent
+        const mois =data.mois
+        const response = await axios.get(`http://localhost:3000/salaire-agent/${idAgent}/${mois}`)
+        return  response
     }
     const close = (e) =>{
         const classRemove = e.target.id
         document.querySelector(`.${classRemove}`).classList.remove(classRemove)
     }
 
-    return {departement,getdeptAgentDpt,agentDptActive,
-        definirShitfNuit,definirShitfJour,shiftAgent,getShitAgent,close,dptActive
+    return {departement,getdeptAgentDpt,agentDptActive,getSalaire,
+        definirShitfNuit,definirShitfJour,shiftAgent,getShitAgent,close,dptActive,getRapportDpt,getRapportAgent
     ,titre}
 }

@@ -9,12 +9,12 @@ import {SalaireAgent} from "../../component/salaireAgent.tsx";
 
 
 export const ListDepartement = () => {
-    const {departement,getdeptAgentDpt, agentDptActive,close,
-        definirShitfNuit,definirShitfJour,shiftAgent,getShitAgent,dptActive,titre} = UseDepartement()
+    const {departement,getdeptAgentDpt, agentDptActive,close,getSalaire,
+        definirShitfNuit,definirShitfJour,shiftAgent,getShitAgent,dptActive,titre,getRapportDpt,getRapportAgent} = UseDepartement()
 
     const {addClass, removeClass} = UseModal("d-modal-agent")
     const {  addClass : addReport, removeClass : removeReport } = UseModal("d-modal-rapport-visible");
-    const {  addClass : addC, removeClass : remC } = UseModal("d-modal-rapport-agent-visible");
+    const {  addClass : addC, removeClass : remC,idAgentActive } = UseModal("d-modal-rapport-agent-visible");
     const {  addClass : add, removeClass : rem } = UseModal('d-modal-agent-salaire-visible')
     useEffect( () =>{
 
@@ -143,9 +143,9 @@ export const ListDepartement = () => {
 
             </div>
             <AddAgent titre={titre} handleRemove={removeClass} dptActive={dptActive}/>
-            <RapportPointage handleRemove={removeReport} dpt={dptActive}/>
-            <RapportAgent handleRemove={remC} agt={agentDptActive}/>
-            <SalaireAgent handleRemove={rem}  agt={agentDptActive}/>
+            <RapportPointage handleRemove={removeReport} dpt={dptActive} handllGetReport={getRapportDpt}/>
+            <RapportAgent handleRemove={remC} idAgent={idAgentActive} handleGetReportAgent={getRapportAgent}/>
+            <SalaireAgent handleRemove={rem}  idAgent={idAgentActive} handleSalaire={getSalaire}/>
         </div>
     );
 };
