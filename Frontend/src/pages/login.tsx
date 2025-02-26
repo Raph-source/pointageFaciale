@@ -11,7 +11,13 @@ export const Login = () => {
         try {
             const response = await axios.post('http://localhost:3000/authentification', data)
             localStorage.setItem("idAgent", response.data.agent.id)
-            navigate("/agent/accueil")
+            //navigate("/agent/grh/accueil")
+            const titre = response.data.titre
+            if (titre === "rh"){
+                navigate("/agent/grh/accueil")
+            }else{
+                navigate("/agent/accueil")
+            }
         }catch (e) {
             alert(e.response.data.reponse)
             reset()

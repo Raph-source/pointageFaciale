@@ -4,7 +4,7 @@ import {UseReload} from "../hook/useReload.ts";
 import {useState} from "react";
 
 export const SalaireAgent = ({handleRemove,idAgent,handleSalaire}) => {
-    const {register, handleSubmit} = useForm()
+    const {register} = useForm()
     const [rapport,setRapport] = useState(null)
     const {reset} = UseReload()
 

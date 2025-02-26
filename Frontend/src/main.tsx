@@ -4,6 +4,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {Login} from "./pages/login.tsx";
 import  "../public/style/css/style.css"
 import {ListDepartement} from "./pages/Agent/listDepartement.tsx";
+import {AnotherAgent} from "./pages/Agent/anotherAgent.tsx";
 
 const router = createBrowserRouter([
     {
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
         element : <Login/>
     },
     {
-        path : 'agent/',
+        path : 'agent/grh/',
         children : [
             {
                 path : "accueil",
@@ -23,6 +24,15 @@ const router = createBrowserRouter([
             }
         ]
     },
+    {
+        path : "agent/",
+        children : [
+            {
+                path: "accueil",
+                element : <AnotherAgent/>
+            }
+        ]
+    }
 ])
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
