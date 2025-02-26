@@ -72,7 +72,10 @@ def enregistrer_entree(matricule):
         date_actuelle = datetime.now().date()
         heure_actuelle = datetime.now()
 
+        cursor.close()
+
         # Vérifier si l'agent a déjà pointé aujourd'hui
+        cursor = connection.cursor(dictionary=True)
         cursor.execute(
             """
             SELECT * FROM presence 
@@ -88,49 +91,55 @@ def enregistrer_entree(matricule):
         else:
             # Vérifier le shift de l'agent
             if heure_actuelle.time().hour >= 8 and heure_actuelle.time().hour <= 16:
-                cursor.execute(
-                    """
-                    SELECT * FROM agentmatin 
-                    WHERE idAgent = %s
-                    """,
-                    (id_agent,)
-                )
-                trouver = cursor.fetchone()
-                cursor.close()
+                # cursor1 = connection.cursor(dictionary=True)
+                # cursor1.execute(
+                #     """
+                #     SELECT * FROM agentmatin 
+                #     WHERE idAgent = %s
+                #     """,
+                #     (id_agent,)
+                # )
+                # trouver = cursor1.fetchone()
 
-                if trouver:
-                    # Insérer une nouvelle présence
-                    cursor.execute(
-                        """
-                        INSERT INTO presence (idAgent, date, HeureArrivee)
-                        VALUES (%s, %s, %s)
-                        """,
-                        (id_agent, date_actuelle, heure_actuelle)
-                    )
-                    connection.commit()
-                    print(f"Pointage effectué pour l'agent {matricule} à {heure_actuelle}.")
-            else:
-                cursor.execute(
+                # if trouver:
+                #     cursor1.close()
+                # Insérer une nouvelle présence
+                cursor2 = connection.cursor(dictionary=True)
+                cursor2.execute(
                     """
-                    SELECT * FROM agentsoiree 
-                    WHERE idAgent = %s
+                    INSERT INTO presence (idAgent, date, HeureArrivee)
+                    VALUES (%s, %s, %s)
                     """,
-                    (id_agent,)
+                    (id_agent, date_actuelle, heure_actuelle)
                 )
-                trouver = cursor.fetchone()
-                cursor.close()
-                
-                if trouver:
-                    # Insérer une nouvelle présence
-                    cursor.execute(
-                        """
-                        INSERT INTO presence (idAgent, date, HeureArrivee)
-                        VALUES (%s, %s, %s)
-                        """,
-                        (id_agent, date_actuelle, heure_actuelle)
-                    )
-                    connection.commit()
-                    print(f"Pointage effectué pour l'agent {matricule} à {heure_actuelle}.")
+                connection.commit()
+                print(f"Pointage effectué pour l'agent {matricule} à {heure_actuelle}.")
+                cursor2.close()
+            else:
+                # cursor1 = connection.cursor(dictionary=True)
+                # cursor1.execute(
+                #     """
+                #     SELECT * FROM agentsoiree 
+                #     WHERE idAgent = %s
+                #     """,
+                #     (id_agent,)
+                # )
+                # trouver = cursor1.fetchone()
+                # cursor1.close()
+
+                # if trouver:
+                # Insérer une nouvelle présence
+                cursor2 = connection.cursor(dictionary=True)
+                cursor2.execute(
+                    """
+                    INSERT INTO presence (idAgent, date, HeureArrivee)
+                    VALUES (%s, %s, %s)
+                    """,
+                    (id_agent, date_actuelle, heure_actuelle)
+                )
+                connection.commit()
+                print(f"Pointage effectué pour l'agent {matricule} à {heure_actuelle}.")
+                cursor2.close()
     except mysql.connector.Error as err:
         print(f"Erreur lors de l'enregistrement de la présence : {err}")
     finally:
