@@ -59,11 +59,11 @@ export const UseDepartement = () =>{
         console.log(response.data)
         setShiftAgant(response.data)
     }
-    const getRapport = async (e) =>{
-        const idDepartement = e.target.id
-        const mois = "2"
+    const getRapportDpt = async (data) =>{
+        const idDepartement = data.idDepartement
+        const mois =data.mois
         const response = await axios.get(`http://localhost:3000/rapport-pointage-departement/${idDepartement}/${mois}`)
-        console.log(response)
+        return  response
     }
     const close = (e) =>{
         const classRemove = e.target.id
@@ -71,6 +71,6 @@ export const UseDepartement = () =>{
     }
 
     return {departement,getdeptAgentDpt,agentDptActive,
-        definirShitfNuit,definirShitfJour,shiftAgent,getShitAgent,close,dptActive
+        definirShitfNuit,definirShitfJour,shiftAgent,getShitAgent,close,dptActive,getRapportDpt
     ,titre}
 }

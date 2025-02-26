@@ -7,6 +7,10 @@ export const UseReload = () =>{
                 element.value = ""
             }
         })
+        const select = document.querySelectorAll("select")
+        if (select){
+            select.forEach((element) => element.value == null)
+        }
     }
 
     return {reset}

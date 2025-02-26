@@ -1,15 +1,20 @@
 import {useForm} from "react-hook-form";
 import axios from "axios";
 import {UseReload} from "../hook/useReload.ts";
+import {useState} from "react";
 
-export const RapportPointage = ({handleRemove,dpt}) => {
-    const {register, handleSubmit} = useForm()
+export const RapportPointage = ({handleRemove, dpt, handllGetReport}) => {
+    const {register} = useForm()
     const {reset} = UseReload()
+    const [rapport, setRapport] = useState(null)
 
-    const onChange = async (data) =>{
-        const Ndata = {...data, idDepartement : String(dpt.id)}
-        const response = await axios.get(`http://localhost:3000/rapport-pointage-departement/${Ndata.idDepartement}/${Ndata.mois}`)
-
+    const onChange = async (e) => {
+        const Ndata = {mois: e.target.value, idDepartement: String(dpt.id)}
+        console.log(e.target.value)
+        const response = await  handllGetReport(Ndata)//axios.get(`http://localhost:3000/rapport-pointage-departement/${Ndata.idDepartement}/${Ndata.mois}`)
+        reset()
+        setRapport(response.data.rapport)
+        console.log(response)
     }
 
     return (
@@ -17,11 +22,10 @@ export const RapportPointage = ({handleRemove,dpt}) => {
             <div className={"d-head"}>
                 <h3>Rapport pointage</h3>
                 <div className={"close"} onClick={handleRemove}>
-
                 </div>
             </div>
             <div className={"d-month"}>
-                <select {...register('mois', {required: true})} onChange={handleSubmit(onChange)}>
+                <select {...register('mois', {required: true})} onChange={onChange}>
                     <option value="" disabled={true}>Selectionner un mois</option>
                     <option value="1">Janvier</option>
                     <option value="2">Fevrier</option>
@@ -35,11 +39,9 @@ export const RapportPointage = ({handleRemove,dpt}) => {
                     <option value="10">Octobre</option>
                     <option value="11">Novembre</option>
                     <option value="12">Decembre</option>
-
-
                 </select>
             </div>
-            <div className={"d-body"}>
+            {rapport ? rapport.length > 0 ? <div className={"d-body"}>
                 <div className={"d-head-table"}>
                     <div className={'th'}>
                         <span>Matricule</span>
@@ -54,35 +56,24 @@ export const RapportPointage = ({handleRemove,dpt}) => {
                         <span>Heure de sortie</span>
                     </div>
                 </div>
-                <div className={"d-body-table"}>
+                {rapport.map((rp, index) => <div className={"d-body-table"} key={index}>
                     <div className={'td'}>
-                        <span>20KL224</span>
-                    </div>
-                    <div className={'td'}>
-                        <span>Kipata mulubwe elie</span>
-                    </div>
-                    <div className={'th'}>
-                        <span>3.02.2022</span>
-                    </div>
-                    <div className={'th'}>
-                        <span>3.02.2022</span>
-                    </div>
-                </div>
-                <div className={"d-body-table"}>
-                    <div className={'td'}>
-                        <span>20KL224</span>
+                        <span>{rp.agent.Matricule}</span>
                     </div>
                     <div className={'td'}>
-                        <span>Kipata mulubwe elie</span>
+                        <span>{rp.agent.Nom} {rp.agent.PostNom} {rp.agent.Prenom}</span>
                     </div>
                     <div className={'th'}>
-                        <span>3.02.2022</span>
+                        <span>{rp.HeureArrivee}</span>
                     </div>
                     <div className={'th'}>
-                        <span>3.02.2022</span>
+                        <span>{rp.HeureSortie}</span>
                     </div>
-                </div>
-            </div>
+                </div>)}
+
+            </div> : <h4>Aucun rapport pour ce mois</h4> : <h4>Selectionnez le mois</h4>}
+
         </div>
     );
 };
+

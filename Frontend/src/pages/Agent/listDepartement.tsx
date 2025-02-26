@@ -10,7 +10,7 @@ import {SalaireAgent} from "../../component/salaireAgent.tsx";
 
 export const ListDepartement = () => {
     const {departement,getdeptAgentDpt, agentDptActive,close,
-        definirShitfNuit,definirShitfJour,shiftAgent,getShitAgent,dptActive,titre} = UseDepartement()
+        definirShitfNuit,definirShitfJour,shiftAgent,getShitAgent,dptActive,titre,getRapportDpt} = UseDepartement()
 
     const {addClass, removeClass} = UseModal("d-modal-agent")
     const {  addClass : addReport, removeClass : removeReport } = UseModal("d-modal-rapport-visible");
@@ -143,7 +143,7 @@ export const ListDepartement = () => {
 
             </div>
             <AddAgent titre={titre} handleRemove={removeClass} dptActive={dptActive}/>
-            <RapportPointage handleRemove={removeReport} dpt={dptActive}/>
+            <RapportPointage handleRemove={removeReport} dpt={dptActive} handllGetReport={getRapportDpt}/>
             <RapportAgent handleRemove={remC} agt={agentDptActive}/>
             <SalaireAgent handleRemove={rem}  agt={agentDptActive}/>
         </div>
