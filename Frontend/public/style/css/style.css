@@ -156,6 +156,7 @@ html body .d-container .d-container-body .d-cont-body .list-dept .d-list-dept {
 }
 html body .d-container .d-container-body .d-cont-body .list-dept .d-list-dept .d-dept {
   display: flex;
+  position: relative;
   align-items: center;
   cursor: pointer;
   padding: 0.6em;
@@ -163,10 +164,31 @@ html body .d-container .d-container-body .d-cont-body .list-dept .d-list-dept .d
   border-left: 10px solid #09709E;
   background-color: #F5F5F5;
   border-radius: 3px;
+  transition: all 0.3s ease-in-out;
 }
 html body .d-container .d-container-body .d-cont-body .list-dept .d-list-dept .d-dept h3 {
   font-weight: 500;
   font-size: 15px;
+  z-index: 2;
+  transition: all 0.3s ease-in-out;
+}
+html body .d-container .d-container-body .d-cont-body .list-dept .d-list-dept .d-dept:after {
+  content: "";
+  position: absolute;
+  width: 0px;
+  height: 100%;
+  background-color: #09709E;
+  left: 0;
+  z-index: 1;
+  transition: all 0.3s ease-in-out;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+html body .d-container .d-container-body .d-cont-body .list-dept .d-list-dept .d-dept:hover:after {
+  width: 100%;
+}
+html body .d-container .d-container-body .d-cont-body .list-dept .d-list-dept .d-dept:hover h3 {
+  color: white;
 }
 html body .d-container .d-container-body .d-cont-body .list-alea {
   position: absolute;
@@ -287,6 +309,104 @@ html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-o
 html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-list-agent .d-agent .d-menu-visible {
   z-index: 2;
   display: block;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-ecran {
+  overflow-y: hidden;
+  scrollbar-width: thin;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-ecran .d-info-agent {
+  height: 100%;
+  padding: 0.8em;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-ecran .d-info-agent .d-nom {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 0.5em;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px #f1f1f1;
+  margin-bottom: 1em;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-ecran .d-info-agent .d-nom .d-round {
+  width: 3.5em;
+  height: 3.5em;
+  border-radius: 50%;
+  background-color: #002a2f;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-ecran .d-info-agent .d-nom .d-id {
+  margin-left: 1em;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-ecran .d-info-agent .d-nom .d-id h3 {
+  font-size: 25px;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-ecran .d-info-agent .d-nom .d-id span {
+  font-size: 11px;
+  background-color: #09709E;
+  border-radius: 5px;
+  font-weight: 500;
+  display: block;
+  text-align: center;
+  width: 6em;
+  color: white;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-ecran .d-info-agent .d-list-option {
+  overflow-y: hidden;
+  height: 12em;
+  position: relative;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-ecran .d-info-agent .d-list-option .d-scroll {
+  transition: all 0.5s ease-in-out;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-ecran .d-info-agent .d-list-option .d-scroll .d-another-info {
+  border-radius: 3px;
+  height: 12em;
+  width: 100%;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-ecran .d-info-agent .d-list-option .d-scroll .d-another-info p {
+  box-shadow: 0px 0px 5px #eaeaea;
+  padding: 0.4em;
+  border-radius: 3px;
+  background-color: white;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5em;
+  width: 100%;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-ecran .d-info-agent .d-list-option .d-scroll .d-another-info p span {
+  padding: 0.3em;
+  display: block;
+  background-color: #8abcd3;
+  color: #002a2f;
+  font-size: 14px;
+  margin-left: 0.8em;
+  border-radius: 3px;
+  font-weight: 500;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-ecran .d-info-agent .d-list-option .d-scroll .d-another-info p .oui {
+  background-color: #96ffcb;
+  color: #005d40;
+  width: 3em;
+  text-align: center;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-ecran .d-info-agent .d-list-option .d-scroll .d-another-info p .non {
+  width: 3em;
+  text-align: center;
+  background-color: #fd9b9b;
+  color: #3d0101;
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-ecran .d-info-agent .d-list-option .x1 {
+  transform: translateY(-12em);
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-ecran .d-info-agent .d-list-option .x2 {
+  transform: translateY(-24em);
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-ecran .d-info-agent .d-list-option .x3 {
+  transform: translateY(-36em);
+}
+html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-ecran .d-info-agent .d-list-option .x4 {
+  transform: translateY(-48em);
 }
 html body .d-container .d-shift-cont {
   position: fixed;

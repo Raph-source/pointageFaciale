@@ -8,6 +8,7 @@ export const UseDepartement = () =>{
     const [shiftAgent, setShiftAgant] = useState([])
     const [dptActive, setDptActive] = useState(null)
 
+
     useEffect(() => {
         getDepartement()
     },[])
@@ -34,14 +35,7 @@ export const UseDepartement = () =>{
             alert(e.response.data.reponse)
         }
     }
-    const definirSalaite = (e) =>{
-        try {
 
-        }
-        catch (e) {
-
-        }
-    }
     const definirShitfNuit = async  (e) =>{
         try {
             const idAgent = parseInt(e.target.id)
@@ -65,6 +59,7 @@ export const UseDepartement = () =>{
         const response = await axios.get(`http://localhost:3000/rapport-pointage-departement/${idDepartement}/${mois}`)
         return  response
     }
+    
     const getRapportAgent = async (data) =>{
         const idAgent = data.idAgent
         const mois =data.mois

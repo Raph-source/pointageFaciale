@@ -168,6 +168,7 @@ html {
               margin-top: 1em;
               .d-dept{
                 display: flex;
+                position: relative;
                 align-items: center;
                 cursor: pointer;
                 padding: 0.6em;
@@ -175,9 +176,32 @@ html {
                 border-left: 10px solid #09709E;
                 background-color: #F5F5F5;
                 border-radius: 3px;
+                transition: all 0.3s ease-in-out;
                 h3{
                   font-weight: 500;
                   font-size: 15px;
+                  z-index: 2;
+                  transition: all 0.3s ease-in-out;
+                }
+                &:after{
+                  content:  "";
+                  position: absolute;
+                  width: 0px;
+                  height: 100%;
+                  background-color: #09709E;
+                  left: 0;
+                  z-index: 1;
+                  transition: all 0.3s ease-in-out;
+                  border-top-right-radius: 3px;
+                  border-bottom-right-radius: 3px;
+                }
+                &:hover  {
+                  &:after{
+                    width: 100%;
+                  }
+                  h3{
+                    color: white;
+                  }
                 }
               }
             }
@@ -301,6 +325,103 @@ html {
                     display: block;
                   }
                 }
+              }
+              .d-ecran{
+                overflow-y: hidden;
+                .d-info-agent{
+                    height: 100%;
+                    padding: 0.8em;
+                    .d-nom{
+                      display: flex;
+                      align-items: center;
+                      background-color: white;
+                      padding: 0.5em;
+                      border-radius: 5px;
+                      .d-round{
+                        width: 3.5em;
+                        height: 3.5em;
+                        border-radius: 50%;
+                        background-color: #002a2f;
+                      }
+                      .d-id{
+                        margin-left: 1em;
+                        h3{
+                          font-size: 25px;
+                        }
+                        span{
+                          font-size: 11px;
+                          background-color: #09709E;
+                          border-radius: 5px;
+                          font-weight: 500;
+                          display: block;
+                          text-align: center;
+                          width: 6em;
+                          color: white;
+                        }
+                      }
+                      box-shadow: 0px 0px 5px #f1f1f1;
+                      margin-bottom: 1em;
+                    }
+                    .d-list-option{
+                      overflow-y: hidden;
+                      height: 12em;
+                      position: relative;
+                      .d-scroll{
+                        transition: all 0.5s ease-in-out;
+                        .d-another-info{
+                          border-radius: 3px;height: 12em;width: 100%;
+
+                          p{
+                            box-shadow: 0px 0px 5px #eaeaea;
+                            padding: 0.4em;
+                            border-radius: 3px;
+                            background-color: white;
+                            font-size: 15px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            margin-bottom: 0.5em;
+                            width: 100%;
+                            span{
+                              padding: 0.3em;
+                              display: block;
+                              background-color: #8abcd3;
+                              color: #002a2f;
+                              font-size: 14px;
+                              margin-left: 0.8em;
+                              border-radius: 3px;
+                              font-weight: 500;
+                            }
+                            .oui{
+                              background-color: #96ffcb;
+                              color: #005d40;
+                              width: 3em;
+                              text-align: center;
+                            }
+                            .non{
+                              width: 3em;
+                              text-align: center;
+                              background-color: #fd9b9b;
+                              color: #3d0101;
+                            }
+                          }
+                        }
+                      }
+                      .x1{
+                        transform: translateY(-12em);
+                      }
+                      .x2{
+                        transform: translateY(-24em);
+                      }
+                      .x3{
+                        transform: translateY(-36em);
+                      }
+                      .x4{
+                        transform: translateY(-48em);
+                      }
+                    }
+                  }
+                scrollbar-width: thin;
               }
             }
           }

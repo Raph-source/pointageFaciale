@@ -78,6 +78,13 @@ class Agent{
 
         return trouver
     }
+
+    static async getAgentDpt(idAgent){
+        const agent = await  prisma.agent.findUnique({where : {id : parseInt(idAgent)},
+            include : {departement : true ,titre : true}})
+
+        return agent
+    }
 }
 
 module.exports = Agent

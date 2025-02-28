@@ -63,5 +63,7 @@ agent.get('/shift-agent/:idAgent', (req, res) =>{ Agent.checkShift(req, res)})
 agent.get('/rapport-pointage-departement/:idDepartement/:mois', (req, res) =>{ Agent.getRapportPointageDepartement(req, res)})
 agent.get('/rapport-pointage-agent/:idAgent/:mois', (req, res) =>{ Agent.getRapportPointageAgent(req, res)})
 agent.get('/salaire-agent/:idAgent/:mois', (req, res) =>{ Agent.getSalaire(req, res)})
+agent.get('/agent-information/:idAgent', (req,res) => { Agent.getAgentDptController(req,res) })
+
 
 module.exports = agent;

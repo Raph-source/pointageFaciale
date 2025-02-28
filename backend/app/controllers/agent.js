@@ -426,6 +426,23 @@ class Agent{
         }
     }
 
+    static async getAgentDptController(req,res){
+        try {
+            let {idAgent} = req.params
+
+            if (typeof idAgent != "undefined"){
+                idAgent == validator.escape(idAgent)
+                idAgent = Number(idAgent)
+                const agentDpt = await Agent_M.getAgentDpt(idAgent)
+                res.status(200).json({agent  : agentDpt})
+            }else{
+                res.status(500).json({erreur: "erreur serveur"})
+            }
+        }catch (e) {
+            res.status(500).json({erreur : "erreur serveur"})
+        }
+    }
+
 }
 
 module.exports = Agent

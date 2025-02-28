@@ -10,13 +10,15 @@ export const Login = () => {
     const onSubmit = async (data) =>{
         try {
             const response = await axios.post('http://localhost:3000/authentification', data)
-            localStorage.setItem("idAgent", response.data.agent.id)
             //navigate("/agent/grh/accueil")
             const titre = response.data.titre
             if (titre === "rh"){
                 navigate("/agent/grh/accueil")
+                localStorage.setItem("idRh", response.data.agent.id)
             }else{
                 navigate("/agent/accueil")
+                localStorage.setItem("idDpt", response.data)
+                localStorage.setItem("idAgent", response.data.agent.id)
             }
         }catch (e) {
             alert(e.response.data.reponse)

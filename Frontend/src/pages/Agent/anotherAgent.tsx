@@ -1,5 +1,19 @@
+import {DptInfo} from "../../component/Info/dptInfo.tsx";
+import {Salaire} from "../../component/Info/salaire.tsx";
+import {Shift} from "../../component/Info/shift.tsx";
+import {RapportAgent} from "../../component/Info/rapportAgent.tsx";
+import {useNavigate} from "react-router-dom";
+import {UseModal} from "../../hook/useModal.ts";
+import {UseSpecificAgent} from "../../hook/useSpecificAgent.ts";
 
 export const AnotherAgent = () => {
+    const naviagete = useNavigate()
+    const check = localStorage.getItem("idAgent")
+    if (!(check)){
+        navigate('/')
+    }
+    const {agent,rapport,salaire,shitf} = UseSpecificAgent()
+    const {carroussell} = UseModal()
     return (
         <div className={"d-container"}>
             <div className={"d-container-body"}>
@@ -42,23 +56,26 @@ export const AnotherAgent = () => {
                             <h3>Liste des departements</h3>
                         </div>
                         <div className={"d-list-dept"}>
-
                             <div className={"d-dept"}
-                                 onClick={null}
-                                 id={""}>
-                                <h3 id={""}>Voir ses shift</h3>
+                                 onClick={carroussell}
+                                 id={0}>
+                                <h3 id={0}>Informations sur l'agent</h3>
                             </div>
                             <div className={"d-dept"}
-                                 onClick={null}
-                                 id={""}>
-                                <h3 id={""}>Voir ses informations</h3>
+                                 onClick={carroussell}
+                                 id={1}>
+                                <h3 id={1}>Rapport mensuelle de l'agent</h3>
                             </div>
                             <div className={"d-dept"}
-                                 onClick={null}
-                                 id={""}>
-                                <h3 id={""}>Voir ses shift</h3>
+                                 onClick={carroussell}
+                                 id={2}>
+                                <h3 id={2}>Salaire mensuel</h3>
                             </div>
-
+                            <div className={"d-dept"}
+                                 onClick={carroussell}
+                                 id={3}>
+                                <h3 id={3}>Voir les shifts</h3>
+                            </div>
 
                         </div>
                     </div>
@@ -67,12 +84,24 @@ export const AnotherAgent = () => {
                             <h3><span>Selectionner une option</span></h3>
                         </div>
                         <div className={"d-list-agent-option"}>
-                            <div className={"d-option-dpt"}>
-                                <div className={"d-list-dept"}>
-
+                            <div className={"d-list-agent d-ecran"}>
+                                <div className={"d-info-agent"}>
+                                    <div className={"d-nom"}>
+                                        <div className={"d-round"}></div>
+                                        <div className={"d-id"}>
+                                            <h3>{agent && agent.Prenom.charAt(0).toUpperCase() + agent.Prenom.slice(1)} {agent && agent.Nom}</h3>
+                                            <span>{agent && agent.Matricule}</span>
+                                        </div>
+                                    </div>
+                                    <div className={"d-list-option"}>
+                                        <div className={"d-scroll"}>
+                                            <DptInfo agent={agent && agent} rapport={rapport && rapport}/>
+                                            <RapportAgent rapport={rapport && rapport}/>
+                                            <Salaire salaire={salaire && salaire}/>
+                                            <Shift shift={shitf}/>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className={"d-list-agent"}>
                             </div>
                         </div>
                     </div>

@@ -4,14 +4,20 @@ import {Agent} from "../../component/agent.tsx";
 import {AddAgent} from "../../component/addAgent.tsx";
 import {UseModal} from "../../hook/useModal.ts";
 import {RapportPointage} from "../../component/rapportPointage.tsx";
-import {RapportAgent} from "../../component/rapportAgent.tsx";
 import {SalaireAgent} from "../../component/salaireAgent.tsx";
+import {RapportAgent} from "../../component/rapportAgent.tsx";
+import {useNavigate} from "react-router-dom";
 
 
 export const ListDepartement = () => {
+    const navigate = useNavigate()
+    const check = localStorage.getItem("idRh")
+    if (!(check)){
+        navigate('/')
+    }
+
     const {departement,getdeptAgentDpt, agentDptActive,close,getSalaire,
         definirShitfNuit,definirShitfJour,shiftAgent,getShitAgent,dptActive,titre,getRapportDpt,getRapportAgent} = UseDepartement()
-
     const {addClass, removeClass} = UseModal("d-modal-agent")
     const {  addClass : addReport, removeClass : removeReport } = UseModal("d-modal-rapport-visible");
     const {  addClass : addC, removeClass : remC,idAgentActive } = UseModal("d-modal-rapport-agent-visible");
