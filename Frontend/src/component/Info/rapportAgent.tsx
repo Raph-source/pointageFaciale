@@ -1,5 +1,5 @@
 export const RapportAgent = ({rapport}) => {
-    console.log(rapport)
+
     return (
         <div className={"d-another-info"}>
             {

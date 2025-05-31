@@ -20,7 +20,7 @@ export const SalaireAgent = ({handleRemove,idAgent,handleSalaire}) => {
     return (
         <div className={"d-modal-agent-salaire"}>
             <div className={"d-head"}>
-                <h3>Rapport pointage</h3>
+                <h3>Salaire de l'agent</h3>
                 <div className={"close"} onClick={handleRemove}>
 
                 </div>

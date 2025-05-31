@@ -20,7 +20,7 @@ export const RapportAgent = ({handleRemove,idAgent,handleGetReportAgent}) => {
     return (
         <div className={"d-modal-rapport-agent"}>
             <div className={"d-head"}>
-                <h3>Rapport pointage</h3>
+                <h3>Rapport du mois</h3>
                 <div className={"close"} onClick={handleRemove}>
                 </div>
             </div>

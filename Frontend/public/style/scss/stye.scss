@@ -321,7 +321,7 @@ html {
                     }
                   }
                   .d-menu-visible{
-                    z-index: 2;
+                    z-index: 12;
                     display: block;
                   }
                 }
@@ -683,8 +683,79 @@ html {
           }
         }
       }
+      .d-modal-info-dpt{
+        width: 40%;
+        position: absolute;
+        top: 45%;
+        visibility: hidden;
+        z-index: -1;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        padding: 0.8em;
+        background-color: #ffffff;
+        border-radius: 3px;
+        transition: all 0.3s ease-in-out;
+        .d-head{
+          display: flex;
+          justify-content: space-between;align-items: center;
+          .close{
+            cursor: pointer;
+            padding: 0.5em;
+            background-color: #ff5656;
+            border-radius: 50%;
+          }
+        }
+        .d-info{
+          margin-top: 1em;
+          p{
+            font-size: 15px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.1em;
+            span{
+              &:nth-child(2){
+                display: block;
+                width: 3em;
+                text-align: center;
+                font-weight: 500;
+                padding: 0.1em;
+                background-color: #c2f5e5;
+                border-radius: 3px;
+                color: #002a2f;
+              }
+            }
+            &:nth-child(2){
+              span{
+                &:nth-child(2){
+                  display: block;
+                  width: 3em;
+                  text-align: center;
+                  font-weight: 500;
+                  padding: 0.1em;
+                  background-color: #c2e3f5;
+                  border-radius: 3px;
+                  color: #00212f;
+                }
+              }
+            }
+            &:nth-child(3){
+              span{
+                &:nth-child(2){
+                  display: block;
+                  width: 3em;
+                  text-align: center;
+                  font-weight: 500;
+                  padding: 0.1em;
+                  background-color: #f5c2cb;
+                  border-radius: 3px;
+                  color: #2f0009;
+                }
+              }
+            }
+          }
+        }
+      }
     }
-
   }
   body.d-modal-agent{
     &:after{
@@ -748,6 +819,7 @@ html {
       transition: all 0.3s ease-in-out;
     }
   }
+
   body.d-modal-agent-salaire-visible {
     &:after{
       content: "";
@@ -763,6 +835,28 @@ html {
       }
     }
     .d-modal-agent-salaire{
+      top: 50%;
+      visibility: visible;
+      z-index: 3;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+
+  body.d-modal-info-dpt-visible{
+    &:after{
+      content: "";
+      height: 100vh;
+      width: 100vw;
+      background-color: rgba(0, 0, 0, 0.82);
+      position: absolute;
+      top: 0;
+    }
+    .d-container{
+      .d-menu{
+        display: none;
+      }
+    }
+    .d-modal-info-dpt{
       top: 50%;
       visibility: visible;
       z-index: 3;

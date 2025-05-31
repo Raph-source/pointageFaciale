@@ -307,7 +307,7 @@ html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-o
   background-color: #e0e0e0;
 }
 html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-list-agent .d-agent .d-menu-visible {
-  z-index: 2;
+  z-index: 12;
   display: block;
 }
 html body .d-container .d-container-body .d-cont-body .list-alea .d-list-agent-option .d-ecran {
@@ -656,6 +656,69 @@ html body .d-container .d-modal-agent-salaire .d-body .d-body-table {
   gap: 1em;
   margin-bottom: 0.5em;
 }
+html body .d-container .d-modal-info-dpt {
+  width: 40%;
+  position: absolute;
+  top: 45%;
+  visibility: hidden;
+  z-index: -1;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0.8em;
+  background-color: #ffffff;
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+}
+html body .d-container .d-modal-info-dpt .d-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+html body .d-container .d-modal-info-dpt .d-head .close {
+  cursor: pointer;
+  padding: 0.5em;
+  background-color: #ff5656;
+  border-radius: 50%;
+}
+html body .d-container .d-modal-info-dpt .d-info {
+  margin-top: 1em;
+}
+html body .d-container .d-modal-info-dpt .d-info p {
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.1em;
+}
+html body .d-container .d-modal-info-dpt .d-info p span:nth-child(2) {
+  display: block;
+  width: 3em;
+  text-align: center;
+  font-weight: 500;
+  padding: 0.1em;
+  background-color: #c2f5e5;
+  border-radius: 3px;
+  color: #002a2f;
+}
+html body .d-container .d-modal-info-dpt .d-info p:nth-child(2) span:nth-child(2) {
+  display: block;
+  width: 3em;
+  text-align: center;
+  font-weight: 500;
+  padding: 0.1em;
+  background-color: #c2e3f5;
+  border-radius: 3px;
+  color: #00212f;
+}
+html body .d-container .d-modal-info-dpt .d-info p:nth-child(3) span:nth-child(2) {
+  display: block;
+  width: 3em;
+  text-align: center;
+  font-weight: 500;
+  padding: 0.1em;
+  background-color: #f5c2cb;
+  border-radius: 3px;
+  color: #2f0009;
+}
 html body.d-modal-agent:after {
   content: "";
   height: 100vh;
@@ -718,6 +781,23 @@ html body.d-modal-agent-salaire-visible .d-container .d-menu {
   display: none !important;
 }
 html body.d-modal-agent-salaire-visible .d-modal-agent-salaire {
+  top: 50%;
+  visibility: visible;
+  z-index: 3;
+  transition: all 0.3s ease-in-out;
+}
+html body.d-modal-info-dpt-visible:after {
+  content: "";
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.82);
+  position: absolute;
+  top: 0;
+}
+html body.d-modal-info-dpt-visible .d-container .d-menu {
+  display: none !important;
+}
+html body.d-modal-info-dpt-visible .d-modal-info-dpt {
   top: 50%;
   visibility: visible;
   z-index: 3;

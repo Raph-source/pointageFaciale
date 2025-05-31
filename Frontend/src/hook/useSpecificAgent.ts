@@ -15,9 +15,10 @@ export const UseSpecificAgent = () =>{
     },[])
 
     const getSalaireAgentById = async () =>{
-        const idAgent = localStorage.getItem('idAgent')
+        const idAgent = localStorage.getItem("idAgent")
         const mois =new Date().getMonth()
         const response = await axios.get(`http://localhost:3000/salaire-agent/${idAgent}/${mois}`)
+        console.log(response)
         setSalaire(response.data)
 
     }

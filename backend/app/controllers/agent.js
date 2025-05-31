@@ -388,7 +388,7 @@ class Agent{
     static async getSalaire(req, res){
         try{
             let {idAgent, mois} = req.params
-                    
+            console.log(idAgent+" "+mois)
             if(typeof idAgent != "undefined" && typeof mois != "undefined"){
                 if(idAgent){
                     //bloquer les injections
@@ -400,10 +400,8 @@ class Agent{
                     //l'année
                     const date = new Date()
                     const anneeActuelle = date.getFullYear();
-
                     const rapport = await Presence.calculerSalaire(idAgent, mois, anneeActuelle)
-                    
-                    
+
                     res.status(200).json({
                         totalHeures: rapport.totalHeures,
                         salaireMensuel: rapport.salaireMensuel
@@ -435,6 +433,22 @@ class Agent{
                 idAgent = Number(idAgent)
                 const agentDpt = await Agent_M.getAgentDpt(idAgent)
                 res.status(200).json({agent  : agentDpt})
+            }else{
+                res.status(500).json({erreur: "erreur serveur"})
+            }
+        }catch (e) {
+            res.status(500).json({erreur : "erreur serveur"})
+        }
+    }
+    static async supprimerAgentController(req,res){
+        try {
+            let {idAgent} = req.params
+            if (typeof idAgent != "undefined"){
+                idAgent == validator.escape(idAgent)
+                idAgent = Number(idAgent)
+                const msg = await Agent_M.deleteAgent(idAgent)
+                console.log(msg)
+                res.status(200).json({agent  : msg})
             }else{
                 res.status(500).json({erreur: "erreur serveur"})
             }

@@ -9,8 +9,9 @@ import {UseSpecificAgent} from "../../hook/useSpecificAgent.ts";
 export const AnotherAgent = () => {
     const naviagete = useNavigate()
     const check = localStorage.getItem("idAgent")
+
     if (!(check)){
-        navigate('/')
+        naviagete('/')
     }
     const {agent,rapport,salaire,shitf} = UseSpecificAgent()
     const {carroussell} = UseModal()

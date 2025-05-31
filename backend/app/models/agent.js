@@ -85,6 +85,25 @@ class Agent{
 
         return agent
     }
+    static async deleteAgent(idAgent){
+
+        try {
+            await prisma.presence.deleteMany({
+                where: {
+                    idAgent: parseInt(idAgent),
+                }
+            });
+            await prisma.agent.delete({
+                where: {
+                    id: parseInt(idAgent),
+                }
+            });
+
+            return "operation reussi"
+        }catch (e) {
+            return e
+        }
+    }
 }
 
 module.exports = Agent

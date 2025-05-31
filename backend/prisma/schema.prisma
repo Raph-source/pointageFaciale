@@ -16,60 +16,60 @@ datasource db {
 //CHEMAT DE LA BDD
 
 model Departement {
-  id        Int      @id @default(autoincrement())
-  Nom       String
-  agents    Agent[]
+  id     Int     @id @default(autoincrement())
+  Nom    String
+  agents Agent[]
 }
 
 model SalaireHeure {
-  id        Int      @id @default(autoincrement())
-  Montant   Int
-  titres    Titre[] 
+  id      Int     @id @default(autoincrement())
+  Montant Int
+  titres  Titre[]
 }
 
 model Titre {
-  id        Int         @id @default(autoincrement())
+  id        Int          @id @default(autoincrement())
   Intitule  String
   idSalaire Int
-  salaire   SalaireHeure @relation(fields: [idSalaire], references: [id])
+  salaire   SalaireHeure @relation(fields: [idSalaire], references: [id], onDelete: Cascade)
   agents    Agent[]
 }
 
 model Agent {
-  id            Int        @id @default(autoincrement())
+  id            Int           @id @default(autoincrement())
   Nom           String
   PostNom       String
   Prenom        String
   Matricule     String
-  Mdp     String @default("1234")
-  Telehone     String @default("0000000000")
-  Status Boolean @default(true)
+  Mdp           String        @default("1234")
+  Telehone      String        @default("0000000000")
+  Status        Boolean       @default(true)
   idDepartement Int
   idTitre       Int
-  departement   Departement @relation(fields: [idDepartement], references: [id])
-  titre         Titre       @relation(fields: [idTitre], references: [id])
+  departement   Departement   @relation(fields: [idDepartement], references: [id])
+  titre         Titre         @relation(fields: [idTitre], references: [id])
   presences     Presence[]
   agentMatin    AgentMatin[]
   agentSoiree   AgentSoiree[]
 }
 
 model Presence {
-  id          Int      @id @default(autoincrement())
-  idAgent     Int
-  Date        DateTime
+  id           Int      @id @default(autoincrement())
+  idAgent      Int
+  Date         DateTime
   HeureArrivee DateTime
-  HeureSortie DateTime
-  agent       Agent    @relation(fields: [idAgent], references: [id])
+  HeureSortie  DateTime
+  agent        Agent    @relation(fields: [idAgent], references: [id], onDelete: Cascade)
 }
 
 model AgentMatin {
-  id        Int      @id @default(autoincrement())
+  id      Int   @id @default(autoincrement())
   idAgent Int
-  agent     Agent    @relation(fields: [idAgent], references: [id])
+  agent   Agent @relation(fields: [idAgent], references: [id], onDelete: Cascade)
 }
 
 model AgentSoiree {
-  id        Int      @id @default(autoincrement())
+  id      Int   @id @default(autoincrement())
   idAgent Int
-  agent     Agent    @relation(fields: [idAgent], references: [id])
+  agent   Agent @relation(fields: [idAgent], references: [id], onDelete: Cascade)
 }

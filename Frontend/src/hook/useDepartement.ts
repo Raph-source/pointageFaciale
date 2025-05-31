@@ -52,6 +52,8 @@ export const UseDepartement = () =>{
         const response = await axios.get(`http://localhost:3000/shift-agent/${idAgent}`);
         console.log(response.data)
         setShiftAgant(response.data)
+        e.stopPropagation()
+        console.log(response)
     }
     const getRapportDpt = async (data) =>{
         const idDepartement = data.idDepartement
@@ -59,7 +61,7 @@ export const UseDepartement = () =>{
         const response = await axios.get(`http://localhost:3000/rapport-pointage-departement/${idDepartement}/${mois}`)
         return  response
     }
-    
+
     const getRapportAgent = async (data) =>{
         const idAgent = data.idAgent
         const mois =data.mois
@@ -72,12 +74,23 @@ export const UseDepartement = () =>{
         const response = await axios.get(`http://localhost:3000/salaire-agent/${idAgent}/${mois}`)
         return  response
     }
+    const supprimerAgent = async  (e) =>{
+        try {
+            const idAgent = parseInt(e.target.id)
+            console.log(idAgent)
+            const response = await axios.get(`http://localhost:3000/agent-delete/${idAgent}`);
+            alert("operation reussie !!")
+        }catch (e) {
+            alert(e.response.data.reponse)
+        }
+    }
+
     const close = (e) =>{
         const classRemove = e.target.id
         document.querySelector(`.${classRemove}`).classList.remove(classRemove)
     }
 
-    return {departement,getdeptAgentDpt,agentDptActive,getSalaire,
+    return {departement,getdeptAgentDpt,agentDptActive,getSalaire,supprimerAgent,
         definirShitfNuit,definirShitfJour,shiftAgent,getShitAgent,close,dptActive,getRapportDpt,getRapportAgent
     ,titre}
 }
